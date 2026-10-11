@@ -1,0 +1,1915 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#3DD9B0">
+<title>📐 دفتر الأنشطة في الرياضيات — السنة الأولى</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#FF6FB5;--pink-light:#FFD6EC;
+  --purple:#9B59FF;--purple-light:#E8D5FF;
+  --mint:#3DD9B0;--mint-light:#D4F8EC;
+  --yellow:#FFD93D;--yellow-light:#FFF8C2;
+  --blue:#5EC8FF;--blue-light:#D6EEFF;
+  --orange:#FFA45B;--red:#FF6B6B;
+  --green:#43A047;--green-light:#C8E6C9;
+  --text:#2D1B4E;--text-soft:#6B5B8F;--white:#FFF;
+  --shadow-sm:0 3px 10px rgba(61,217,176,0.12);
+  --shadow-md:0 8px 25px rgba(61,217,176,0.18);
+  --shadow-lg:0 15px 40px rgba(255,111,181,0.25);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Tajawal',sans-serif;background:linear-gradient(135deg,#E0FBF3 0%,#D6EEFF 30%,#FFF0F8 60%,#FFF8C2 100%);background-attachment:fixed;min-height:100vh;color:var(--text);direction:rtl;overflow-x:hidden;line-height:1.6;padding-bottom:20px;}
+button,input,select{font:inherit;color:inherit;}
+button{cursor:pointer;}
+:focus-visible{outline:3px solid var(--mint);outline-offset:3px;border-radius:8px;}
+.hidden{display:none!important;}
+
+.bg-decor{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.bg-decor .uni{position:absolute;font-size:2.5rem;opacity:0.10;animation:float 6s ease-in-out infinite;}
+.bg-decor .uni:nth-child(1){top:8%;left:5%;}
+.bg-decor .uni:nth-child(2){top:25%;right:8%;animation-delay:1s;font-size:3rem;}
+.bg-decor .uni:nth-child(3){bottom:15%;left:10%;animation-delay:2s;}
+.bg-decor .uni:nth-child(4){bottom:25%;right:12%;animation-delay:3s;font-size:2rem;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-25px) rotate(8deg);}}
+.bg-decor .star{position:absolute;font-size:1.2rem;opacity:0.3;animation:twinkle 3s ease-in-out infinite;}
+@keyframes twinkle{0%,100%{opacity:0.2;}50%{opacity:0.7;}}
+
+header{background:linear-gradient(135deg,#3DD9B0 0%,#5EC8FF 50%,#9B59FF 100%);color:white;padding:18px 20px;border-radius:0 0 32px 32px;box-shadow:0 10px 30px rgba(61,217,176,0.35);position:relative;z-index:10;overflow:hidden;}
+header::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(255,255,255,0.25) 0%,transparent 40%);pointer-events:none;}
+.header-content{position:relative;z-index:2;max-width:900px;margin:0 auto;display:flex;align-items:center;gap:15px;}
+.header-logo{font-size:2.5rem;animation:bounce 2s infinite;}
+@keyframes bounce{0%,100%{transform:translateY(0) rotate(-5deg);}50%{transform:translateY(-8px) rotate(5deg);}}
+.header-text h1{font-size:1.35rem;font-weight:900;}
+.header-text p{font-size:0.8rem;opacity:0.95;margin-top:3px;}
+
+.save-status{position:fixed;top:12px;inset-inline-end:12px;z-index:80;background:rgba(255,255,255,0.95);padding:6px 12px;border-radius:14px;font-size:0.78rem;font-weight:700;color:var(--text-soft);box-shadow:var(--shadow-sm);transition:opacity 0.4s;pointer-events:none;}
+.save-status.ok{color:#0a7a5a;}
+.save-status.err{color:var(--red);}
+.save-status.fade{opacity:0.25;}
+
+.tabs{display:flex;gap:8px;padding:14px 18px;overflow-x:auto;scrollbar-width:none;position:sticky;top:0;background:rgba(255,255,255,0.85);backdrop-filter:blur(15px);z-index:20;border-bottom:2px dashed var(--mint-light);}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{flex-shrink:0;padding:10px 16px;border-radius:18px;background:var(--white);border:2.5px solid var(--mint-light);color:var(--text);font-family:inherit;font-weight:700;font-size:0.9rem;transition:all 0.25s;display:flex;align-items:center;gap:6px;box-shadow:var(--shadow-sm);white-space:nowrap;}
+.tab:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);}
+.tab.active{background:linear-gradient(135deg,var(--mint),var(--blue));color:white;border-color:transparent;box-shadow:0 6px 20px rgba(61,217,176,0.45);}
+
+.container{max-width:900px;margin:0 auto;padding:18px;position:relative;z-index:5;}
+.section{display:none;}
+.section.active{display:block;animation:slideIn 0.4s ease;}
+@keyframes slideIn{from{opacity:0;transform:translateY(15px);}to{opacity:1;transform:translateY(0);}}
+
+.card{background:var(--white);border-radius:24px;padding:20px;margin-bottom:16px;box-shadow:var(--shadow-md);border:2px solid var(--mint-light);}
+.card h2{font-size:1.25rem;margin-bottom:12px;display:flex;align-items:center;gap:10px;color:var(--mint);font-weight:900;}
+.card h2 .icon{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:linear-gradient(135deg,var(--pink-light),var(--mint-light));border-radius:11px;font-size:1.2rem;}
+
+.hero{background:linear-gradient(135deg,#D4F8EC,#D6EEFF,#FFF0F8);border-radius:24px;padding:22px;margin-bottom:16px;text-align:center;border:2px solid white;box-shadow:var(--shadow-md);}
+.hero h2{font-size:1.4rem;font-weight:900;color:var(--mint);margin-bottom:8px;}
+.hero p{font-size:0.98rem;color:var(--text-soft);line-height:1.6;}
+.overall-progress{margin-top:12px;padding:10px 14px;background:rgba(255,255,255,0.7);border-radius:16px;}
+.overall-progress .row{display:flex;justify-content:space-between;font-size:0.85rem;font-weight:700;color:var(--text-soft);margin-bottom:6px;}
+.overall-progress .bar{height:10px;background:rgba(61,217,176,0.15);border-radius:6px;overflow:hidden;}
+.overall-progress .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--mint),var(--blue),var(--purple));border-radius:6px;transition:width 0.6s;}
+
+.chapters-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px;margin-top:12px;}
+.chapter-card{background:linear-gradient(135deg,var(--mint-light),var(--blue-light));border-radius:20px;padding:16px 12px;text-align:center;transition:all 0.3s;border:2.5px solid transparent;position:relative;font-family:inherit;color:inherit;width:100%;display:block;min-height:130px;}
+.chapter-card:hover{transform:translateY(-5px);border-color:var(--mint);box-shadow:0 10px 22px rgba(61,217,176,0.35);}
+.chapter-card .emoji{font-size:1.9rem;display:block;margin-bottom:4px;}
+.chapter-card .num{font-size:1.3rem;font-weight:900;color:var(--mint);line-height:1;}
+.chapter-card .title{font-size:0.88rem;font-weight:700;margin-top:5px;color:var(--text);line-height:1.3;}
+.chapter-card .bar{height:6px;background:rgba(255,255,255,0.6);border-radius:4px;overflow:hidden;margin-top:8px;}
+.chapter-card .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--mint),var(--blue));border-radius:4px;transition:width 0.6s;}
+.chapter-card .sub{font-size:0.72rem;color:var(--text-soft);margin-top:4px;font-weight:700;}
+.chapter-card .status-badge{position:absolute;top:8px;inset-inline-end:8px;font-size:0.85rem;}
+
+.btn{padding:11px 20px;border:none;border-radius:16px;font-family:inherit;font-size:0.95rem;font-weight:700;transition:all 0.2s;display:inline-flex;align-items:center;justify-content:center;gap:6px;box-shadow:var(--shadow-sm);color:white;min-height:46px;}
+.btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:var(--shadow-md);}
+.btn:disabled{opacity:0.45;cursor:not-allowed;}
+.btn-primary{background:linear-gradient(135deg,var(--mint),var(--blue));}
+.btn-mint{background:linear-gradient(135deg,var(--mint),var(--blue));}
+.btn-ghost{background:var(--white);color:var(--mint);border:2.5px solid var(--mint-light);}
+.btn-ghost:hover:not(:disabled){background:var(--mint-light);}
+.btn-warn{background:linear-gradient(135deg,var(--red),var(--orange));}
+.btn-sm{padding:8px 14px;font-size:0.85rem;min-height:38px;}
+
+.info-banner{background:linear-gradient(135deg,var(--yellow-light),var(--pink-light));border:2.5px dashed var(--pink);border-radius:16px;padding:11px 15px;margin-bottom:14px;text-align:center;font-weight:700;color:var(--purple);font-size:0.9rem;}
+
+.progress-bar{height:10px;background:var(--mint-light);border-radius:8px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--mint),var(--blue),var(--purple));border-radius:8px;transition:width 0.5s;}
+
+.unit-overlay{position:fixed;inset:0;z-index:100;background:linear-gradient(135deg,#E0FBF3 0%,#D6EEFF 30%,#FFF0F8 60%,#FFF8C2 100%);display:flex;flex-direction:column;overflow-y:auto;}
+.unit-overlay.hidden{display:none;}
+.unit-topbar{display:flex;align-items:center;gap:10px;padding:14px 16px;color:white;font-weight:900;font-size:1.05rem;border-radius:0 0 24px 24px;box-shadow:0 8px 24px rgba(0,0,0,0.15);position:sticky;top:0;z-index:5;}
+.unit-topbar .ttl{flex:1;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.unit-topbar .iconbtn{background:rgba(255,255,255,0.22);border:0;border-radius:14px;width:44px;height:44px;color:white;font-size:1.3rem;display:grid;place-items:center;font-weight:900;}
+.unit-topbar .stars-pill{background:rgba(255,255,255,0.25);padding:6px 12px;border-radius:16px;font-size:0.88rem;font-weight:900;white-space:nowrap;}
+.unit-progress-wrap{padding:8px 20px 0;}
+.unit-meta{display:flex;justify-content:space-between;align-items:center;padding:8px 20px 0;font-weight:900;color:var(--mint);font-size:0.88rem;}
+.unit-body{flex:1;padding:16px 18px 24px;max-width:720px;margin:0 auto;width:100%;}
+.unit-bottom{display:flex;align-items:center;gap:10px;padding:12px 18px calc(18px + env(safe-area-inset-bottom));position:sticky;bottom:0;background:linear-gradient(transparent,rgba(255,255,255,0.92) 30%);backdrop-filter:blur(6px);}
+.unit-bottom .grow{flex:1;}
+.linkbtn{background:none;border:0;color:var(--mint);font-weight:900;padding:10px;font-size:0.9rem;border-radius:10px;}
+.hintbtn{background:linear-gradient(135deg,var(--yellow),var(--orange));border:0;color:var(--text);font-weight:900;padding:10px 14px;font-size:0.9rem;border-radius:14px;display:inline-flex;align-items:center;gap:6px;box-shadow:var(--shadow-sm);cursor:pointer;}
+
+.question-card{background:var(--white);border:3px solid var(--mint-light);border-radius:22px;padding:20px;margin-bottom:14px;box-shadow:0 6px 20px rgba(61,217,176,0.15);position:relative;}
+.question-card::before{content:"";position:absolute;top:-3px;inset-inline-start:-3px;width:44px;height:44px;background:linear-gradient(135deg,var(--yellow),var(--orange));border-radius:22px 0 22px 0;}
+.question-card .q-badge{position:absolute;top:8px;inset-inline-start:8px;background:white;color:var(--orange);width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:0.9rem;z-index:2;}
+.q{font-size:1.3rem;font-weight:700;line-height:1.9;margin:0;color:var(--text);padding-inline-start:44px;}
+.fb{margin-top:14px;padding:14px;border-radius:16px;font-weight:900;font-size:1rem;text-align:center;}
+.fb.good{background:linear-gradient(135deg,var(--mint-light),#E8FFF8);color:#0a7a5a;border:2px solid var(--mint);}
+.fb.try{background:linear-gradient(135deg,var(--yellow-light),#FFFDF0);color:#8a6a00;border:2px solid var(--yellow);}
+.fb.explain{background:linear-gradient(135deg,#E3F2FD,#BBDEFB);color:#0d47a1;border:2px solid #64B5F6;font-size:0.95rem;line-height:1.7;text-align:start;}
+
+/* ============ SCENE BOX (الرسم/الصورة قبل السؤال) ============ */
+.scene-box{
+  margin:0 0 14px;
+  padding:16px;
+  background:linear-gradient(135deg,#FFFDF9,#F0FBF8);
+  border:3px dashed var(--mint);
+  border-radius:20px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  align-items:center;
+  min-height:90px;
+}
+.scene-box.row{flex-direction:row;}
+.scene-box.rtl-row{flex-direction:row;}  /* RTL by default in Arabic */
+.scene-box.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;justify-items:center;}
+.scene-box.stack{flex-direction:column;gap:14px;}
+.scene-emoji{font-size:2.8rem;line-height:1;filter:drop-shadow(0 3px 4px rgba(0,0,0,0.12));}
+.scene-emoji.small{font-size:1.8rem;}
+.scene-emoji.big{font-size:4rem;}
+.scene-group{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 14px;background:white;border-radius:16px;border:2px solid var(--mint-light);box-shadow:0 3px 8px rgba(61,217,176,0.15);}
+.scene-group .scene-items{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;max-width:200px;}
+.scene-group .scene-label{font-weight:900;color:var(--purple);font-size:0.95rem;font-family:'Amiri',serif;}
+.scene-arrow{font-size:2rem;color:var(--mint);font-weight:900;padding:0 6px;}
+.scene-two-groups{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;align-items:center;}
+.scene-caption{
+  width:100%;
+  text-align:center;
+  font-family:'Amiri',serif;
+  font-size:1.05rem;
+  font-weight:700;
+  color:var(--purple);
+  margin-top:6px;
+  padding-top:8px;
+  border-top:2px dashed var(--mint-light);
+}
+
+/* Choices with emoji */
+.choices{display:grid;gap:12px;}
+.choice{display:flex;align-items:center;gap:14px;padding:16px 18px;background:linear-gradient(135deg,#FFFFFF,#F0FBF8);border:2.5px solid var(--mint-light);border-radius:20px;min-height:76px;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 14px rgba(61,217,176,0.12);width:100%;text-align:start;font:inherit;direction:rtl;}
+.choice:hover:not(:disabled){transform:translateY(-3px);border-color:var(--mint);background:linear-gradient(135deg,#FFFFFF,#D4F8EC);box-shadow:0 8px 22px rgba(61,217,176,0.25);}
+.choice:disabled{cursor:default;}
+.choice-badge{flex-shrink:0;width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--mint),var(--blue));color:white;font-family:'Tajawal',sans-serif;font-weight:900;font-size:1.05rem;display:flex;align-items:center;justify-content:center;border:2px solid white;box-shadow:0 3px 8px rgba(61,217,176,0.4);line-height:1;padding-bottom:2px;}
+.choice-emoji{font-size:2.4rem;line-height:1;flex-shrink:0;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.1));}
+.choice-text{flex:1;font-family:'Amiri',serif;font-weight:900;font-size:1.5rem;color:var(--text);text-align:start;line-height:1.3;min-width:0;}
+.choice.big .choice-text{font-size:2rem;}
+.choice.ok{background:linear-gradient(135deg,var(--mint),#5FE8C5);border-color:var(--mint);}
+.choice.ok .choice-badge{background:linear-gradient(135deg,#0a7a5a,#43A047);}
+.choice.ok .choice-text{color:white;}
+.choice.ok .choice-emoji{filter:drop-shadow(0 0 0 white);}
+.choice.bad{background:#E0E0E0;border-color:#BDBDBD;box-shadow:none;}
+.choice.bad .choice-badge{background:linear-gradient(135deg,#757575,#9E9E9E);}
+.choice.bad .choice-text{color:#666;}
+
+.tapwrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+.tapitem{position:relative;background:white;border:2.5px solid var(--mint-light);border-radius:16px;padding:14px 20px;font-size:1.7rem;min-width:62px;min-height:62px;font-family:'Amiri',serif;font-weight:700;color:var(--purple);transition:all 0.2s;}
+.tapitem.word{font-size:1.2rem;padding:12px 16px;}
+.tapitem:hover:not(:disabled){border-color:var(--mint);transform:translateY(-2px);}
+.tapitem.sel{background:linear-gradient(135deg,var(--yellow-light),var(--mint-light));border-color:var(--yellow);}
+.tapitem.right{background:linear-gradient(135deg,var(--mint-light),#E8FFF8);border-color:var(--mint);}
+
+.mcols{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.mtile{display:block;width:100%;background:white;border:2.5px solid var(--mint-light);border-radius:14px;padding:12px;font-size:1.15rem;font-weight:700;margin:6px 0;text-align:center;transition:all 0.2s;min-height:54px;color:var(--text);}
+.mtile.arabic{font-family:'Amiri',serif;font-size:1.3rem;color:var(--purple);}
+.mtile.emoji{font-size:2.2rem;padding:8px;}
+.mtile:hover:not(:disabled){border-color:var(--mint);transform:translateY(-2px);}
+.mtile.sel{background:linear-gradient(135deg,var(--yellow-light),var(--mint-light));border-color:var(--yellow);}
+.mtile.done{background:linear-gradient(135deg,var(--mint-light),#E8FFF8);border-color:var(--mint);color:var(--mint);cursor:default;opacity:0.7;}
+
+.ordlab{font-weight:900;margin-top:8px;color:var(--text-soft);font-size:0.88rem;}
+.ordbox,.ordpool{display:flex;flex-wrap:wrap;gap:8px;padding:10px;border-radius:16px;min-height:62px;background:var(--mint-light);}
+.ordpool{background:var(--pink-light);}
+.chip{background:white;border:2.5px solid var(--mint-light);border-radius:14px;padding:10px 16px;font-size:1.3rem;font-weight:700;display:inline-flex;align-items:center;gap:8px;font-family:'Amiri',serif;color:var(--purple);transition:all 0.2s;min-height:52px;cursor:pointer;}
+.chip:hover:not(:disabled){border-color:var(--mint);}
+.chip.placed{background:linear-gradient(135deg,var(--mint-light),#E8FFF8);border-color:var(--mint);color:#0a7a5a;}
+.chip b{background:var(--mint);color:white;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:0.82rem;}
+
+.trace-wrap{background:linear-gradient(135deg,#FFFDF9,#F0FBF8);border:2.5px solid var(--mint);border-radius:20px;padding:12px;margin-top:8px;box-shadow:0 10px 25px rgba(61,217,176,0.2);}
+.letter-display{font-family:'Amiri',serif;font-size:5rem;text-align:center;color:var(--purple);line-height:1;margin:6px 0;}
+.trace-canvas{display:block;width:100%;height:auto;min-height:220px;background:white;border-radius:12px;touch-action:none;cursor:crosshair;box-shadow:inset 0 0 0 2px var(--mint-light);}
+.trace-controls{display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap;}
+
+.train-row{display:flex;align-items:center;gap:4px;margin:14px 0;padding:10px;background:linear-gradient(135deg,#FFF8E1,#F0FBF8);border-radius:20px;border:2.5px dashed var(--orange);}
+.train-locomotive{width:56px;height:56px;background:linear-gradient(135deg,#3DD9B0,#5EC8FF);border-radius:14px 14px 8px 8px;display:grid;place-items:center;font-size:1.6rem;flex-shrink:0;box-shadow:0 3px 8px rgba(61,217,176,0.35);position:relative;}
+.train-wagon{flex:1;display:flex;align-items:center;gap:6px;background:linear-gradient(135deg,#FFE0B2,#FFCC80);border-radius:14px;padding:8px 12px;border:2.5px solid #FFA45B;box-shadow:0 3px 8px rgba(255,164,91,0.3);position:relative;min-height:64px;flex-direction:row-reverse;justify-content:flex-end;}
+.train-word{font-family:'Amiri',serif;font-size:1.6rem;font-weight:900;color:var(--text);direction:rtl;padding-inline-start:8px;}
+.train-input{width:52px;height:52px;border:3px solid var(--mint);border-radius:12px;background:white;text-align:center;font-family:'Amiri',serif;font-size:1.8rem;font-weight:900;color:var(--purple);direction:rtl;flex-shrink:0;}
+.train-input:focus{outline:none;border-color:var(--purple);box-shadow:0 0 0 4px rgba(61,217,176,0.15);}
+.train-input.ok{border-color:var(--mint);background:var(--mint-light);}
+.train-input.bad{border-color:var(--red);background:#FFE0E0;}
+
+.fill-display{font-family:'Amiri',serif;font-size:3rem;font-weight:900;text-align:center;direction:rtl;color:var(--purple);padding:18px 20px;background:linear-gradient(135deg,#FFF8E1,#E0FBF3);border-radius:20px;border:3px dashed var(--yellow);letter-spacing:3px;line-height:1.6;margin:10px 0;}
+.fill-underscore{color:#E53935;font-weight:900;font-size:3.2rem;}
+
+/* Number line */
+.number-line{display:flex;align-items:center;justify-content:flex-start;gap:2px;padding:14px;background:linear-gradient(135deg,#FFF8E1,#F0FBF8);border-radius:16px;overflow-x:auto;margin:14px 0;}
+.num-cell{min-width:44px;height:44px;display:grid;place-items:center;font-family:'Tajawal',sans-serif;font-weight:900;font-size:1.1rem;background:white;border:2px solid var(--mint-light);border-radius:10px;color:var(--purple);flex-shrink:0;}
+.num-cell.active{background:linear-gradient(135deg,var(--mint),var(--blue));color:white;border-color:var(--mint);transform:scale(1.1);}
+.num-cell.empty{background:var(--yellow-light);border-color:var(--yellow);color:var(--orange);}
+
+.toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%) translateY(300px);background:linear-gradient(135deg,var(--mint),var(--blue));color:white;padding:13px 24px;border-radius:20px;font-weight:700;font-size:0.98rem;box-shadow:0 12px 35px rgba(61,217,176,0.5);transition:transform 0.4s;z-index:1000;max-width:90vw;text-align:center;pointer-events:none;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:200;}
+
+@media(max-width:600px){
+  .header-text h1{font-size:1.1rem;}
+  .header-logo{font-size:2.2rem;}
+  .chapter-card{padding:12px 8px;min-height:120px;}
+  .chapters-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;}
+  .q{font-size:1.1rem;padding-inline-start:34px;}
+  .choice{min-height:68px;padding:14px 16px;gap:12px;}
+  .choice-badge{width:34px;height:34px;font-size:0.95rem;}
+  .choice-text{font-size:1.25rem;}
+  .choice.big .choice-text{font-size:1.7rem;}
+  .choice-emoji{font-size:2rem;}
+  .scene-emoji{font-size:2.2rem;}
+  .scene-emoji.big{font-size:3rem;}
+  .mtile{min-height:60px;padding:10px 8px;}
+  .letter-display{font-size:3.5rem;}
+  .fill-display{font-size:2rem;letter-spacing:2px;}
+  .fill-underscore{font-size:2.2rem;}
+  .train-word{font-size:1.3rem;}
+  .train-input{width:46px;height:46px;font-size:1.5rem;}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+
+<div class="bg-decor" aria-hidden="true">
+  <span class="uni">📐</span><span class="uni">🔢</span><span class="uni">🧮</span><span class="uni">✏️</span><span class="uni">📏</span>
+  <span class="star" style="top:15%;left:20%;">⭐</span>
+  <span class="star" style="top:35%;right:25%;animation-delay:1s;">✨</span>
+  <span class="star" style="top:60%;left:15%;animation-delay:2s;">🌟</span>
+</div>
+
+<div id="saveStatus" class="save-status hidden" role="status" aria-live="polite"></div>
+
+<header>
+  <div class="header-content">
+    <div class="header-logo" aria-hidden="true">📐</div>
+    <div class="header-text">
+      <h1>دفتر الأنشطة في الرياضيات</h1>
+      <p>🔢 السنة الأولى من التعليم الابتدائي • الجزائر</p>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist">
+  <button class="tab active" data-target="home" role="tab" aria-selected="true">🏠 الرئيسية</button>
+  <button class="tab" data-target="numbers" role="tab" aria-selected="false">🔢 الأعداد</button>
+  <button class="tab" data-target="parent" role="tab" aria-selected="false">👨‍👩‍👧 الأهل</button>
+</nav>
+
+<div class="container">
+  <section id="home" class="section active" role="tabpanel">
+    <div class="hero">
+      <div style="font-size:2.2rem;letter-spacing:6px;margin-bottom:8px;" aria-hidden="true">🔢📐✏️🧮📏</div>
+      <h2>🌟 مرحباً بك في دفتري في الرياضيات! 🌟</h2>
+      <p>أنشطة ممتعة مع صور وأشكال: أعداد، جمع وطرح، مجسمات، وقياس!</p>
+      <div class="overall-progress" id="overallProgress"></div>
+    </div>
+    <div class="card">
+      <h2><span class="icon">📚</span> المحاور</h2>
+      <p style="margin-bottom:10px;color:var(--text-soft);">اضغط على أي محور لتبدأ أنشطته:</p>
+      <div class="chapters-grid" id="chaptersGrid"></div>
+    </div>
+  </section>
+  <section id="numbers" class="section" role="tabpanel">
+    <div class="card">
+      <h2><span class="icon">🔢</span> لوحة الأعداد</h2>
+      <div class="info-banner">👆 اضغط على أي عدد لتسمعه وتتعرف عليه وتتدرب على كتابته</div>
+      <div id="numbersGrid"></div>
+    </div>
+  </section>
+  <section id="parent" class="section" role="tabpanel">
+    <div class="card">
+      <h2><span class="icon">👨‍👩‍👧</span> ركن الأهل</h2>
+      <div id="parentContent"></div>
+    </div>
+  </section>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<canvas id="confetti" class="hidden" aria-hidden="true"></canvas>
+
+<div id="unitOverlay" class="unit-overlay hidden" role="dialog" aria-modal="true">
+  <div class="unit-topbar" id="unitTopbar">
+    <button class="iconbtn" onclick="closeUnit()" aria-label="إغلاق">✕</button>
+    <div class="ttl" id="unitTitle">المحور</div>
+    <span class="stars-pill" id="unitStars">⭐ 0</span>
+  </div>
+  <div class="unit-progress-wrap"><div class="progress-bar"><div class="progress-fill" id="unitProgress" style="width:0%"></div></div></div>
+  <div class="unit-meta"><span id="unitIdx">1 / 1</span><span id="unitPage"></span></div>
+  <div class="unit-body" id="unitBody">
+    <div class="question-card">
+      <span class="q-badge">؟</span>
+      <p class="q" id="unitQuestion"></p>
+      <div id="unitVis"></div>
+    </div>
+    <div id="unitBox"></div>
+    <div class="fb hidden" id="unitFb"></div>
+  </div>
+  <div class="unit-bottom" id="unitBottom"></div>
+  <div id="unitResultView" class="hidden"></div>
+</div>
+
+<script>
+'use strict';
+
+/* ============================================================
+   DATA — كل سؤال يحتوي على:
+     - scene: المشهد البصري (يمثل الصورة في الكتاب)
+     - o: خيارات تحوي {text, emoji}
+   ============================================================ */
+const DATA = {
+  version: 1,
+  units: [
+    // ============= المحور 1: الأعداد من 0 إلى 10 =============
+    {title:"الأعداد من 0 إلى 10", icon:"🔢", field:"numbers", qs:[
+      // ص 7 — عدّ الأزهار
+      {p:7, t:"عُدَّ الأَزْهَارَ فِي البِطَاقَةِ وَاخْتَرِ العَدَدَ المُنَاسِب",
+       type:"mc", scene:{kind:"row", items:["🌷","🌷","🌷"]},
+       o:[{text:"1"},{text:"2"},{text:"3"},{text:"4"}], a:2,
+       id:"n01_01", hint:"🌸 عُدَّ الأزهار واحدًا واحدًا.",
+       explain:"عَدَدُ الأَزْهَارِ 3."},
+
+      // ص 7 — عدّ الأقلام
+      {p:7, t:"عُدَّ الأَقْلَامَ وَاخْتَرِ العَدَدَ المُنَاسِب",
+       type:"mc", scene:{kind:"row", items:["✏️","✏️","✏️"]},
+       o:[{text:"1"},{text:"2"},{text:"3"},{text:"4"}], a:2,
+       id:"n01_02", hint:"✏️ عُدَّ الأقلام.",
+       explain:"عَدَدُ الأَقْلَامِ 3."},
+
+      // ص 7 — كتابة 1
+      {p:7, t:"تَتَبَّعْ رَقَمَ الوَاحِد «1» بِإِصْبَعِك أَوْ بِالفَأْرَة",
+       type:"trace", letter:"1", id:"n01_03"},
+
+      // ص 7 — كتابة 2
+      {p:7, t:"تَتَبَّعْ رَقَمَ الاثْنَيْنِ «2» بِإِصْبَعِك",
+       type:"trace", letter:"2", id:"n01_04"},
+
+      // ص 9 — لَوِّن 4 كرات
+      {p:9, t:"كَمْ عَدَدُ الكُرَاتِ فِي المَشْهَد؟",
+       type:"mc", scene:{kind:"row", items:["🔴","🔴","🔴","🔴"]},
+       o:[{text:"2"},{text:"3"},{text:"4"},{text:"5"}], a:2,
+       id:"n01_05", hint:"🔴 عُدَّ الكرات.", explain:"4 كُرَات."},
+
+      // ص 9 — الإجاص
+      {p:9, t:"حَوِّطِ العَدَدَ المُنَاسِبَ لِعَدَدِ الإِجَاص",
+       type:"mc", scene:{kind:"row", items:["🍐","🍐","🍐"]},
+       o:[{text:"1"},{text:"2"},{text:"3"},{text:"4"}], a:2,
+       id:"n01_06", hint:"🍐 عُدَّ حبّات الإجاص.", explain:"3 حبّات."},
+
+      // ص 9 — 5 قريصات
+      {p:9, t:"أَرْسُمُ القَرِيصَاتِ النَّاقِصَةَ — كَمْ قَرِيصَةً يَجِبُ رَسْمُهَا لِإِتْمَامِ العَدَدِ 5؟",
+       type:"mc", scene:{kind:"row", items:["🔴","🔴","🔴","⚪","⚪"]},
+       o:[{text:"1"},{text:"2"},{text:"3"},{text:"5"}], a:1,
+       id:"n01_07", hint:"🔴 المطلوب 5 كرات.", explain:"نحتاج رسم 2."},
+
+      // ص 10 — أصابع
+      {p:10, t:"كَمْ عَدَدُ الأَصَابِعِ المَرْفُوعَة؟",
+       type:"mc", scene:{kind:"row", items:["✋"]},
+       o:[{text:"3", emoji:"3️⃣"},{text:"4", emoji:"4️⃣"},{text:"5", emoji:"5️⃣"},{text:"6", emoji:"6️⃣"}], a:2,
+       id:"n01_08", hint:"✋ عُدَّ الأصابع.", explain:"5 أصابع."},
+
+      // ص 10 — العدد 7
+      {p:10, t:"عُدَّ النَّجَمَاتِ وَاخْتَرِ العَدَدَ المُنَاسِب",
+       type:"mc", scene:{kind:"grid", items:["⭐","⭐","⭐","⭐","⭐","⭐","⭐"], cols:5},
+       o:[{text:"5"},{text:"6"},{text:"7"},{text:"8"}], a:2,
+       id:"n01_09", hint:"⭐ عُدَّ النجوم.", explain:"7 نجوم."},
+
+      // ص 10 — العدد 6
+      {p:10, t:"عُدَّ المُثَلَّثَاتِ وَاخْتَرِ العَدَدَ المُنَاسِب",
+       type:"mc", scene:{kind:"grid", items:["🔺","🔺","🔺","🔺","🔺","🔺"], cols:3},
+       o:[{text:"4"},{text:"5"},{text:"6"},{text:"7"}], a:2,
+       id:"n01_10", hint:"🔺 عُدَّ المثلثات.", explain:"6 مثلثات."},
+
+      // ص 11 — الفراشات
+      {p:11, t:"عُدَّ الفَرَاشَات. هَلْ هِيَ أَكْثَرُ أَمْ أَقَلُّ مِنَ الثَّلَاث؟",
+       type:"mc", scene:{kind:"row", items:["🦋","🦋","🦋","🦋","🦋"]},
+       o:[{text:"أَكْثَرُ مِنَ الثَّلَاث", emoji:"✅"},
+          {text:"أَقَلُّ مِنَ الثَّلَاث", emoji:"❌"}], a:0,
+       id:"n01_11", hint:"🦋 عُدَّ الفراشات (5).",
+       explain:"الفراشات أكثر من الثلاث."},
+
+      // ص 13 — 7 نجمات
+      {p:13, t:"لَوِّنْ نَجَمَاتٍ بِقَدْرِ العَدَدِ المَكْتُوب: 7",
+       type:"mc", scene:{kind:"grid", items:["⭐","⭐","⭐","⭐","⭐","⭐","⭐","⭐","⭐","⭐"], cols:5},
+       o:[{text:"5"},{text:"6"},{text:"7"},{text:"9"}], a:2,
+       id:"n01_13", hint:"⭐ 7 نجمات.", explain:"7."},
+
+      // ص 13 — 9 طماطم
+      {p:13, t:"أَشْطُبِ الأَشْيَاءَ الزَّائِدَةَ لِلْحُصُولِ عَلَى 9",
+       type:"mc", scene:{kind:"grid", items:["🍅","🍅","🍅","🍅","🍅","🍅","🍅","🍅","🍅","🍅"], cols:5},
+       o:[{text:"8"},{text:"9"},{text:"10"},{text:"11"}], a:1,
+       id:"n01_14", hint:"🍅 المطلوب 9.", explain:"9."},
+
+      // ص 14 — الصحن الفارغ = 0
+      {p:14, t:"كَمْ حَبَّةَ فَرَاوِلَةٍ فِي الصَّحْنِ الفَارِغ؟",
+       type:"mc", scene:{kind:"row", items:["🍽️"]},
+       o:[{text:"0", emoji:"0️⃣"},{text:"1", emoji:"1️⃣"},{text:"2", emoji:"2️⃣"},{text:"3", emoji:"3️⃣"}], a:0,
+       id:"n01_15", hint:"🍽️ الصحن فارغ.", explain:"0 حبات."},
+
+      // ص 15 — الدجاج
+      {p:15, t:"عُدَّ الدَّجَاجَاتِ وَاخْتَرِ العَدَدَ المُنَاسِب",
+       type:"mc", scene:{kind:"grid", items:["🐔","🐔","🐔","🐔","🐔","🐔","🐔","🐔"], cols:4},
+       o:[{text:"6"},{text:"7"},{text:"8"},{text:"9"}], a:2,
+       id:"n01_17", hint:"🐔 عُدَّ الدجاج.", explain:"8 دجاجات."},
+
+      // ص 15 — 5 قريصات
+      {p:15, t:"أَكْمِلْ رَسْمَ القَرِيصَاتِ لِلْحُصُولِ عَلَى 5 — كَمْ قَرِيصَةً نَاقِصَة؟",
+       type:"mc", scene:{kind:"row", items:["🔴","🔴","🔴","⚪","⚪"]},
+       o:[{text:"1"},{text:"2"},{text:"3"},{text:"5"}], a:1,
+       id:"n01_18", hint:"🔴 المطلوب 5.", explain:"ناقص 2."},
+
+      // ص 16 — 10 كريات
+      {p:16, t:"أَكْمِلْ السِّلْسِلَةَ لِتَشْمَلَ 10 كُرَيَّات — كَمْ نَاقِصَة؟",
+       type:"mc", scene:{kind:"row", items:["🔴","🔴","🔴","🔴","🔴","🔴","🔴","⚪","⚪","⚪"]},
+       o:[{text:"2"},{text:"3"},{text:"4"},{text:"5"}], a:1,
+       id:"n01_19", hint:"🔴 المطلوب 10.", explain:"ناقص 3."},
+
+      // ص 16 — كتابة 10
+      {p:16, t:"تَتَبَّعْ العَدَدَ 10 بِإِصْبَعِك",
+       type:"trace", letter:"10", id:"n01_20"},
+
+      // ص 17 — 6 تفاحات
+      {p:17, t:"ضَعْ إِشَارَةً عَلَى الصُّورَةِ الَّتِي بِهَا سِتَّةُ أَشْيَاء",
+       type:"mc", scene:{kind:"two-groups",
+         left:{items:["🍎","🍎","🍎","🍎","🍎","🍎"], label:"أ"},
+         right:{items:["🍎","🍎","🍎","🍎","🍎"], label:"ب"}},
+       o:[{text:"المَجْمُوعَة أ (6)", emoji:"🅰️"},
+          {text:"المَجْمُوعَة ب (5)", emoji:"🅱️"}], a:0,
+       id:"n01_21", hint:"🍎 عُدَّ كل مجموعة.", explain:"المجموعة أ بها 6."},
+
+      // ص 17 — 9 قريصات
+      {p:17, t:"لَوِّنْ قَرِيصَاتٍ بِقَدْرِ 9 — كَمْ قَرِيصَة؟",
+       type:"mc", scene:{kind:"grid", items:["🔴","🔴","🔴","🔴","🔴","🔴","🔴","🔴","🔴","🔴","🔴"], cols:6},
+       o:[{text:"7"},{text:"8"},{text:"9"},{text:"11"}], a:2,
+       id:"n01_22", hint:"🔴 المطلوب 9.", explain:"9."}
+    ]},
+
+    // ============= المحور 2: تعيين موقع في الفضاء =============
+    {title:"تعيين موقع في الفضاء", icon:"🧭", field:"space", qs:[
+      // ص 8 — أمام الأسد
+      {p:8, t:"اُنْظُرْ إِلَى الصُّورَة. مَنْ هُوَ أَمَامَ الأَسَد؟",
+       type:"mc",
+       scene:{kind:"row", items:["🦁","🐪","🐻","🦊"],
+              caption:"🦁 الأسد | 🐪 الجمل | 🐻 الدب | 🦊 الثعلب"},
+       o:[{text:"الجَمَل", emoji:"🐪"},
+          {text:"الدُّبّ", emoji:"🐻"},
+          {text:"الثَّعْلَب", emoji:"🦊"},
+          {text:"الحِصَان", emoji:"🐴"}], a:0,
+       id:"n02_01", hint:"🦁 الأسد أول الصف — أمامه يعني الذي بعده مباشرة.",
+       explain:"الجَمَل أَمَامَ الأَسَد."},
+
+      // ص 8 — بين الأسد والدب
+      {p:8, t:"مَنْ هُوَ بَيْنَ الأَسَدِ وَالدُّبّ؟",
+       type:"mc",
+       scene:{kind:"row", items:["🦁","🐪","🐻","🦊"],
+              caption:"🦁 الأسد | 🐪 الجمل | 🐻 الدب | 🦊 الثعلب"},
+       o:[{text:"الجَمَل", emoji:"🐪"},
+          {text:"الثَّعْلَب", emoji:"🦊"},
+          {text:"الحِصَان", emoji:"🐴"}], a:0,
+       id:"n02_02", hint:"🦁🐪🐻 — ما بين الأسد والدب.",
+       explain:"الجَمَل بَيْنَ الأَسَدِ وَالدُّبّ."},
+
+      // ص 8 — وراء الدب
+      {p:8, t:"مَنْ هُوَ وَرَاءَ الدُّبّ؟",
+       type:"mc",
+       scene:{kind:"row", items:["🦁","🐪","🐻","🦊"],
+              caption:"🦁 الأسد | 🐪 الجمل | 🐻 الدب | 🦊 الثعلب"},
+       o:[{text:"الثَّعْلَب", emoji:"🦊"},
+          {text:"الحِصَان", emoji:"🐴"},
+          {text:"الجَمَل", emoji:"🐪"}], a:0,
+       id:"n02_03", hint:"🐻 الدب ثم الذي بعده.", explain:"الثَّعْلَب وَرَاءَ الدُّبّ."},
+
+      // ص 12 — البنت فوق المقعد
+      {p:12, t:"البِنْتُ ...... المَقْعَد",
+       type:"mc",
+       scene:{kind:"stack", items:["👧","🪑"],
+              caption:"👧 البنت | 🪑 المقعد"},
+       o:[{text:"فَوْقَ", emoji:"⬆️"},
+          {text:"تَحْتَ", emoji:"⬇️"}], a:0,
+       id:"n02_04", hint:"👧 البنت جالسة على المقعد.",
+       explain:"البنت فوق المقعد."},
+
+      // ص 12 — الولد تحت الطاولة
+      {p:12, t:"الوَلَدُ ...... الطَّاوِلَة",
+       type:"mc",
+       scene:{kind:"stack", items:["👦","🪑"],
+              caption:"👦 الولد | 🪑 الكرسي تحت الطاولة"},
+       o:[{text:"فَوْقَ", emoji:"⬆️"},
+          {text:"تَحْتَ", emoji:"⬇️"}], a:1,
+       id:"n02_05", hint:"👦 الولد تحت الطاولة.", explain:"تحت."},
+
+      // ص 12 — الرف والقوارير
+      {p:12, t:"القَوَارِيرُ ...... الرَّفّ",
+       type:"mc",
+       scene:{kind:"stack", items:["🍶","🍶","🍶","📚"],
+              caption:"🍶 3 قوارير | 📚 الرف"},
+       o:[{text:"فَوْقَ", emoji:"⬆️"},
+          {text:"تَحْتَ", emoji:"⬇️"}], a:0,
+       id:"n02_06", hint:"🍶 القوارير على الرف.", explain:"فوق."},
+
+      // ص 20 — اليد اليمنى
+      {p:20, t:"أَيُّ يَدٍ تَكْتُبُ بِهَا مَرْيَم؟ (البنت في الصورة)",
+       type:"mc",
+       scene:{kind:"row", items:["👧✍️"], caption:"👧✍️ مريم تكتب"},
+       o:[{text:"اليَد اليُمْنَى", emoji:"🤚"},
+          {text:"اليَد اليُسْرَى", emoji:"🖐️"}], a:0,
+       id:"n02_07", hint:"✍️ اليد اليمنى عادةً هي التي نكتب بها.",
+       explain:"اليَد اليُمْنَى."},
+
+      // ص 20 — القطة على يسار الولد
+      {p:20, t:"مَنْ عَلَى يَسَارِ الوَلَد؟ (الوَلَد يَنْظُر إِلَيْنَا)",
+       type:"mc",
+       scene:{kind:"row", items:["🐱","👦"], caption:"🐱 القطة | 👦 الولد"},
+       o:[{text:"القِطَّة", emoji:"🐱"},
+          {text:"الكَلْب", emoji:"🐶"},
+          {text:"الأَرْنَب", emoji:"🐰"}], a:0,
+       id:"n02_08", hint:"🐱 القطة على يسار الولد.", explain:"القِطَّة."}
+    ]},
+
+    // ============= المحور 3: الجمع والطرح =============
+    {title:"الجمع والطرح", icon:"➕", field:"addsub", qs:[
+      // ص 25 — شاحنة
+      {p:25, t:"كَمْ عُلْبَةً فِي الشَّاحِنَة؟",
+       type:"mc", scene:{kind:"grid", items:["📦","📦","📦","📦","📦"], cols:5},
+       o:[{text:"3"},{text:"4"},{text:"5"},{text:"6"}], a:2,
+       id:"n03_01", hint:"📦 عُدَّ العلب.", explain:"5 علب."},
+
+      // ص 25 — 6 + 3 = 9
+      {p:25, t:"6 عُلَبٍ زِيدَتْ بِـ 3 عُلَب. كَمْ عُلْبَة الآن؟",
+       type:"mc",
+       scene:{kind:"two-groups",
+         left:{items:["📦","📦","📦","📦","📦","📦"], label:"6"},
+         right:{items:["📦","📦","📦"], label:"+3"}},
+       o:[{text:"7"},{text:"8"},{text:"9"},{text:"10"}], a:2,
+       id:"n03_02", hint:"➕ 6 + 3", explain:"9 علب."},
+
+      // ص 26 — جمع
+      {p:26, t:"أَحْسِبْ: 4 + 5 = ؟",
+       type:"mc",
+       scene:{kind:"two-groups",
+         left:{items:["🔵","🔵","🔵","🔵"], label:"4"},
+         right:{items:["🟢","🟢","🟢","🟢","🟢"], label:"+5"}},
+       o:[{text:"8"},{text:"9"},{text:"10"},{text:"11"}], a:1,
+       id:"n03_05", hint:"➕ عُدَّ الكرات كلها.", explain:"9."},
+
+      {p:26, t:"أَحْسِبْ: 5 + 2 = ؟",
+       type:"mc",
+       scene:{kind:"two-groups",
+         left:{items:["⭐","⭐","⭐","⭐","⭐"], label:"5"},
+         right:{items:["⭐","⭐"], label:"+2"}},
+       o:[{text:"5"},{text:"6"},{text:"7"},{text:"8"}], a:2,
+       id:"n03_06", hint:"➕ عُدَّ النجوم.", explain:"7."},
+
+      {p:26, t:"أَحْسِبْ: 4 + 3 = ؟",
+       type:"mc",
+       scene:{kind:"two-groups",
+         left:{items:["🍎","🍎","🍎","🍎"], label:"4"},
+         right:{items:["🍎","🍎","🍎"], label:"+3"}},
+       o:[{text:"5"},{text:"6"},{text:"7"},{text:"8"}], a:2,
+       id:"n03_07", hint:"➕ عُدَّ التفاح.", explain:"7."},
+
+      // ص 27 — طرح: 5 - 2
+      {p:27, t:"5 قَرِيصَات، أُخِذَ مِنْهَا 2. كَمْ بَقِي؟",
+       type:"mc",
+       scene:{kind:"two-groups",
+         left:{items:["🔴","🔴","🔴","🔴","🔴"], label:"5"},
+         right:{items:["❌","❌"], label:"-2"}},
+       o:[{text:"1"},{text:"2"},{text:"3"},{text:"4"}], a:2,
+       id:"n03_11", hint:"➖ 5 - 2", explain:"3."},
+
+      {p:27, t:"أَحْسِبْ: 7 - 4 = ؟",
+       type:"mc",
+       scene:{kind:"row", items:["🔴","🔴","🔴","🔴","🔴","🔴","🔴"]},
+       o:[{text:"2"},{text:"3"},{text:"4"},{text:"5"}], a:1,
+       id:"n03_12", hint:"➖ 7 نجوم، أَشْطُب 4.", explain:"3."},
+
+      {p:27, t:"أَحْسِبْ: 8 - 3 = ؟",
+       type:"mc",
+       scene:{kind:"row", items:["⭐","⭐","⭐","⭐","⭐","⭐","⭐","⭐"]},
+       o:[{text:"4"},{text:"5"},{text:"6"},{text:"7"}], a:1,
+       id:"n03_13", hint:"➖ 8 - 3", explain:"5."},
+
+      {p:27, t:"أَحْسِبْ: 8 - 5 = ؟",
+       type:"mc",
+       scene:{kind:"row", items:["🔵","🔵","🔵","🔵","🔵","🔵","🔵","🔵"]},
+       o:[{text:"2"},{text:"3"},{text:"4"},{text:"5"}], a:1,
+       id:"n03_15", hint:"➖ 8 - 5", explain:"3."},
+
+      // ص 28 — 2 + ؟ = 10
+      {p:28, t:"أَكْمِلْ: 2 + ...... = 10",
+       type:"mc",
+       scene:{kind:"two-groups",
+         left:{items:["🔵","🔵"], label:"2"},
+         right:{items:["⚪","⚪","⚪","⚪","⚪","⚪","⚪","⚪"], label:"?"}},
+       o:[{text:"6"},{text:"7"},{text:"8"},{text:"9"}], a:2,
+       id:"n03_16", hint:"🔟 من 2 إلى 10.", explain:"8."},
+
+      {p:28, t:"أَكْمِلْ: ...... + 4 = 9",
+       type:"mc",
+       o:[{text:"3"},{text:"4"},{text:"5"},{text:"6"}], a:2,
+       id:"n03_17", hint:"🔟 ؟ + 4 = 9", explain:"5."},
+
+      {p:28, t:"أَكْمِلْ: 3 + ...... = 5",
+       type:"mc",
+       o:[{text:"1"},{text:"2"},{text:"3"},{text:"4"}], a:1,
+       id:"n03_18", hint:"🔟 3 + ؟ = 5", explain:"2."},
+
+      // ص 42 — جمع للعشرة
+      {p:42, t:"أَحْسِبْ: 9 + 1 = ؟",
+       type:"mc",
+       o:[{text:"9"},{text:"10"},{text:"11"},{text:"12"}], a:1,
+       id:"n03_20", hint:"➕ 9 + 1 = 10.", explain:"10."},
+
+      {p:42, t:"أَحْسِبْ: 19 + 1 = ؟",
+       type:"mc",
+       o:[{text:"19"},{text:"20"},{text:"21"},{text:"22"}], a:1,
+       id:"n03_21", hint:"➕ العشرة الموالية.", explain:"20."},
+
+      {p:42, t:"أَحْسِبْ: 29 + 1 = ؟",
+       type:"mc",
+       o:[{text:"28"},{text:"29"},{text:"30"},{text:"31"}], a:2,
+       id:"n03_22", hint:"➕ العشرة الموالية.", explain:"30."},
+
+      {p:42, t:"أَحْسِبْ: 30 - 1 = ؟",
+       type:"mc",
+       o:[{text:"28"},{text:"29"},{text:"30"},{text:"31"}], a:1,
+       id:"n03_23", hint:"➖ 30 - 1.", explain:"29."},
+
+      // ص 61 — ضعف
+      {p:61, t:"أَحْسِبْ: 6 + 6 = ؟",
+       type:"mc", scene:{kind:"two-groups",
+         left:{items:["🍬","🍬","🍬","🍬","🍬","🍬"], label:"6"},
+         right:{items:["🍬","🍬","🍬","🍬","🍬","🍬"], label:"+6"}},
+       o:[{text:"10"},{text:"11"},{text:"12"},{text:"13"}], a:2,
+       id:"n03_26", hint:"➕ 6 + 6 = ضعف 6.", explain:"12."},
+
+      {p:61, t:"أَحْسِبْ: 6 + 7 = ؟",
+       type:"mc", scene:{kind:"two-groups",
+         left:{items:["🍬","🍬","🍬","🍬","🍬","🍬"], label:"6"},
+         right:{items:["🍬","🍬","🍬","🍬","🍬","🍬","🍬"], label:"+7"}},
+       o:[{text:"11"},{text:"12"},{text:"13"},{text:"14"}], a:2,
+       id:"n03_27", hint:"➕ 6 + 7.", explain:"13."},
+
+      {p:61, t:"أَحْسِبْ: 5 + 5 = ؟",
+       type:"mc", scene:{kind:"two-groups",
+         left:{items:["⭐","⭐","⭐","⭐","⭐"], label:"5"},
+         right:{items:["⭐","⭐","⭐","⭐","⭐"], label:"+5"}},
+       o:[{text:"9"},{text:"10"},{text:"11"},{text:"12"}], a:1,
+       id:"n03_28", hint:"➕ ضعف 5.", explain:"10."},
+
+      // ص 63 — متمم للعشرة
+      {p:63, t:"أَحْسِبْ: 26 + 4 = ؟",
+       type:"mc", scene:{kind:"two-groups",
+         left:{items:["🟦","🟦","🟦","🟦","🟦","🟦","🟦","🟦","🟦","🟦","🟦","🟦","🟦","🟦","🟦","🟦","🟦","🟦","🟦","🟦","🟦","🟦","🟦","🟦","🟦","🟦"], label:"26"},
+         right:{items:["🟨","🟨","🟨","🟨"], label:"+4"}},
+       o:[{text:"28"},{text:"29"},{text:"30"},{text:"31"}], a:2,
+       id:"n03_29", hint:"🔟 26 + 4 = 30.", explain:"30."}
+    ]},
+
+    // ============= المحور 4: الأعداد الكبيرة =============
+    {title:"الأعداد الكبيرة", icon:"🔢", field:"bignumbers", qs:[
+      {p:21, t:"مَا هُوَ أَكْبَرُ عَدَدٍ فِي هَذِهِ المَجْمُوعَة؟",
+       type:"mc",
+       scene:{kind:"row", items:["3️⃣","7️⃣","5️⃣"]},
+       o:[{text:"3", emoji:"3️⃣"},{text:"5", emoji:"5️⃣"},{text:"7", emoji:"7️⃣"}], a:2,
+       id:"n04_01", hint:"🔍 قارن الأعداد.", explain:"7 هو الأكبر."},
+
+      {p:21, t:"مَا هُوَ أَصْغَرُ عَدَدٍ فِي هَذِهِ المَجْمُوعَة؟",
+       type:"mc",
+       scene:{kind:"row", items:["9️⃣","6️⃣","7️⃣"]},
+       o:[{text:"6", emoji:"6️⃣"},{text:"7", emoji:"7️⃣"},{text:"9", emoji:"9️⃣"}], a:0,
+       id:"n04_02", hint:"🔍 الأصغر.", explain:"6."},
+
+      {p:34, t:"أَكْمِلِ الشَّرِيطَ العَدَدِيَّ: 4 ، ... ، 6 ، ... ، 8",
+       type:"mc",
+       scene:{kind:"numberLine", from:4, to:8, missing:[5,7]},
+       o:[{text:"5 و 7"},{text:"5 و 9"},{text:"3 و 7"},{text:"4 و 8"}], a:0,
+       id:"n04_03", hint:"🔢 الأعداد تتزايد بـ 1.", explain:"5 و 7."},
+
+      {p:34, t:"أَكْمِلِ الشَّرِيطَ: 6 ، 7 ، ... ، ... ، 10",
+       type:"mc",
+       scene:{kind:"numberLine", from:6, to:10, missing:[8,9]},
+       o:[{text:"8 و 9"},{text:"8 و 10"},{text:"7 و 9"},{text:"9 و 11"}], a:0,
+       id:"n04_04", hint:"🔢 6، 7، ؟، ؟، 10.", explain:"8 و 9."},
+
+      {p:41, t:"العَدَدُ 34 = ؟ عَشَرَاتٍ وَ ؟ وَحَدَات",
+       type:"mc",
+       scene:{kind:"tensUnits", tens:3, units:4},
+       o:[{text:"3 عشرات و 4 وحدات", emoji:"3️⃣4️⃣"},
+          {text:"4 عشرات و 3 وحدات", emoji:"4️⃣3️⃣"},
+          {text:"3 عشرات و 3 وحدات", emoji:"3️⃣3️⃣"}], a:0,
+       id:"n04_05", hint:"🔢 34 = 30 + 4.", explain:"3 عشرات و 4 وحدات."},
+
+      {p:43, t:"رَتِّبِ الأَعْدَادَ مِنَ الأَصْغَرِ إِلَى الأَكْبَر",
+       type:"order", items:["23","25","33","37"], id:"n04_06",
+       hint:"📊 23 هو الأصغر، 37 هو الأكبر.",
+       explain:"23 ← 25 ← 33 ← 37."},
+
+      {p:47, t:"كَيْفَ نَكْتُبُ «سَبْعَةٌ وَثَلَاثُونَ» بِالأَرْقَام؟",
+       type:"mc",
+       o:[{text:"37", emoji:"3️⃣7️⃣"},{text:"73", emoji:"7️⃣3️⃣"},
+          {text:"30", emoji:"3️⃣0️⃣"},{text:"70", emoji:"7️⃣0️⃣"}], a:0,
+       id:"n04_08", hint:"🔢 سبعة وثلاثون.", explain:"37."},
+
+      {p:47, t:"كَيْفَ نَكْتُبُ «تِسْعَةٌ وَثَلَاثُونَ» بِالأَرْقَام؟",
+       type:"mc",
+       o:[{text:"39", emoji:"3️⃣9️⃣"},{text:"93", emoji:"9️⃣3️⃣"},
+          {text:"30", emoji:"3️⃣0️⃣"},{text:"90", emoji:"9️⃣0️⃣"}], a:0,
+       id:"n04_09", hint:"🔢 تسعة وثلاثون.", explain:"39."},
+
+      {p:54, t:"أَكْمِلِ السِّلْسِلَةَ: 10 ، 20 ، ... ، ... ، ...",
+       type:"mc",
+       scene:{kind:"numberLine", from:10, to:50, step:10, missing:[30,40,50]},
+       o:[{text:"25-30-35"},{text:"30-40-50"},{text:"15-25-35"},{text:"20-30-40"}], a:1,
+       id:"n04_12", hint:"🔢 +10 كل مرة.", explain:"30، 40، 50."},
+
+      {p:54, t:"أَكْمِلِ السِّلْسِلَةَ: 25 ، ... ، 35 ، ... ، 45",
+       type:"mc",
+       o:[{text:"28 و 38"},{text:"30 و 40"},{text:"26 و 36"},{text:"29 و 39"}], a:1,
+       id:"n04_13", hint:"🔢 +5 كل مرة.", explain:"30 و 40."},
+
+      {p:68, t:"العَدَدُ 79 يُسَاوِي:",
+       type:"mc",
+       scene:{kind:"tensUnits", tens:7, units:9, caption:"79"},
+       o:[{text:"70 + 9", emoji:"7️⃣0️⃣ + 9️⃣"},
+          {text:"50 + 40 + 5", emoji:"5️⃣0️⃣ + 4️⃣0️⃣ + 5️⃣"},
+          {text:"80 - 1", emoji:"8️⃣0️⃣ - 1️⃣"},
+          {text:"60 + 19", emoji:"6️⃣0️⃣ + 1️⃣9️⃣"}], a:0,
+       id:"n04_14", hint:"🔢 79 = 7 عشرات و 9 وحدات.", explain:"70 + 9."},
+
+      {p:70, t:"أَنَا عَدَدٌ أَكْبَرُ مِنْ 83 وَأَصْغَرُ مِنْ 90. رَقْمُ أَحَادِي 6. مَنْ أَكُون؟",
+       type:"mc",
+       o:[{text:"84", emoji:"8️⃣4️⃣"},{text:"85", emoji:"8️⃣5️⃣"},
+          {text:"86", emoji:"8️⃣6️⃣"},{text:"87", emoji:"8️⃣7️⃣"}], a:2,
+       id:"n04_15", hint:"🔍 أَكْبَر مِن 83، أَصْغَر مِن 90، آحاده 6.",
+       explain:"86."},
+
+      {p:72, t:"أَكْمِلْ: 20 ، 28 ، 35 ، ... ، 47 ، 52 ، 56",
+       type:"mc",
+       o:[{text:"40", emoji:"4️⃣0️⃣"},{text:"42", emoji:"4️⃣2️⃣"},
+          {text:"44", emoji:"4️⃣4️⃣"},{text:"45", emoji:"4️⃣5️⃣"}], a:1,
+       id:"n04_16", hint:"🔢 بين 35 و 47.", explain:"42."},
+
+      {p:72, t:"احْصُرْ العَدَدَ 87 بِعَشَرَتَيْنِ مُتَتَالِيَتَيْن",
+       type:"mc",
+       o:[{text:"80 و 90"},{text:"70 و 80"},{text:"85 و 95"},{text:"86 و 88"}], a:0,
+       id:"n04_18", hint:"🔢 عشرات 87 هي 80 و 90.", explain:"80 و 90."}
+    ]},
+
+    // ============= المحور 5: المقارنة والقياس =============
+    {title:"المقارنة والقياس", icon:"📏", field:"measure", qs:[
+      {p:22, t:"أَيُّ الأَقْلَامِ هُوَ الأَطْوَل؟",
+       type:"mc",
+       scene:{kind:"row", items:["🖊️","✏️","🖍️","🖌️"],
+              caption:"🖊️ قلم أخضر | ✏️ قلم أزرق | 🖍️ قلم أصفر | 🖌️ قلم وردي"},
+       o:[{text:"القَلَم الأَخْضَر", emoji:"🖊️"},
+          {text:"القَلَم الأَزْرَق", emoji:"✏️"},
+          {text:"القَلَم الأَصْفَر", emoji:"🖍️"},
+          {text:"القَلَم الوَرْدِي", emoji:"🖌️"}], a:0,
+       id:"n05_01", hint:"📏 قارن أطوال الأقلام في الصف.", explain:"القلم الأخضر الأطول."},
+
+      {p:22, t:"رَتِّبِ الأَشْطُرَ مِنَ الأَقْصَرِ إِلَى الأَطْوَل",
+       type:"order",
+       items:["الأخضر (القصير)","الأزرق","الأصفر","الوردي (الأطول)"],
+       id:"n05_02", hint:"📏 ابدأ بالأقصر.", explain:"الأخضر ← الأزرق ← الأصفر ← الوردي."},
+
+      {p:23, t:"أَيُّ حَلَزُونٍ يَصِلُ أَوَّلًا إِلَى الخَسّ؟ (الأقرب)",
+       type:"mc",
+       scene:{kind:"row", items:["🥬","🐌","🐌","🐌","🐌"],
+              caption:"🥬 الخس في البداية، ثم الحلزونات"},
+       o:[{text:"الحَلَزُون الأَوَّل", emoji:"🐌"},
+          {text:"الحَلَزُون الثَّانِي", emoji:"🐌"},
+          {text:"الحَلَزُون الثَّالِث", emoji:"🐌"},
+          {text:"الحَلَزُون الرَّابِع", emoji:"🐌"}], a:0,
+       id:"n05_03", hint:"🐌 أقرب حلزون للخسّ.", explain:"الحلزون الأول."},
+
+      {p:29, t:"قِيَاسُ القَلَمِ بِالوَحْدَات: كَمْ وَحْدَة يَبْلُغ طُولُ القَلَمِ الأَخْضَر؟",
+       type:"mc",
+       scene:{kind:"row", items:["🟩","🟩","🟩","🟩"],
+              caption:"القلم الأخضر = 4 وحدات"},
+       o:[{text:"3"},{text:"4"},{text:"5"},{text:"6"}], a:1,
+       id:"n05_04", hint:"📏 عُدَّ الوحدات.", explain:"4 وحدات."}
+    ]},
+
+    // ============= المحور 6: الأشكال والمجسمات =============
+    {title:"الأشكال والمجسمات", icon:"🔷", field:"shapes", qs:[
+      {p:55, t:"مَا اسْمُ هَذَا المُجَسَّم؟",
+       type:"mc",
+       scene:{kind:"row", items:["🧊"], caption:"🧊 له 6 أوجه مربعة"},
+       o:[{text:"مُكَعَّب", emoji:"🧊"},
+          {text:"كُرَة", emoji:"⚪"},
+          {text:"أُسْطُوَانَة", emoji:"🥫"},
+          {text:"مَخْرُوط", emoji:"🎩"}], a:0,
+       id:"n06_01", hint:"🧊 6 أوجه مربعة.", explain:"مُكَعَّب."},
+
+      {p:55, t:"مَا اسْمُ هَذَا المُجَسَّم؟",
+       type:"mc",
+       scene:{kind:"row", items:["⚽"], caption:"⚽ كروي الشكل"},
+       o:[{text:"مُكَعَّب", emoji:"🧊"},
+          {text:"كُرَة", emoji:"⚽"},
+          {text:"أُسْطُوَانَة", emoji:"🥫"},
+          {text:"مَخْرُوط", emoji:"🎩"}], a:1,
+       id:"n06_02", hint:"⚽ كروي.", explain:"كُرَة."},
+
+      {p:55, t:"مَا اسْمُ هَذَا المُجَسَّم؟",
+       type:"mc",
+       scene:{kind:"row", items:["🥫"], caption:"🥫 قاعدتان دائريتان"},
+       o:[{text:"مُكَعَّب", emoji:"🧊"},
+          {text:"كُرَة", emoji:"⚽"},
+          {text:"أُسْطُوَانَة", emoji:"🥫"},
+          {text:"مَخْرُوط", emoji:"🎩"}], a:2,
+       id:"n06_03", hint:"🥫 قاعدتان دائريتان.", explain:"أُسْطُوَانَة."},
+
+      {p:55, t:"مَا اسْمُ هَذَا المُجَسَّم؟",
+       type:"mc",
+       scene:{kind:"row", items:["🍦"], caption:"🍦 رأس مدبب وقاعدة دائرية"},
+       o:[{text:"مُكَعَّب", emoji:"🧊"},
+          {text:"كُرَة", emoji:"⚽"},
+          {text:"أُسْطُوَانَة", emoji:"🥫"},
+          {text:"مَخْرُوط", emoji:"🍦"}], a:3,
+       id:"n06_04", hint:"🍦 مدبب.", explain:"مَخْرُوط."},
+
+      {p:64, t:"المُثَلَّثُ لَهُ ......",
+       type:"mc",
+       scene:{kind:"row", items:["🔺"], caption:"🔺 المثلث"},
+       o:[{text:"3 أَضْلَاع", emoji:"🔺"},
+          {text:"4 أَضْلَاع", emoji:"🟦"},
+          {text:"5 أَضْلَاع", emoji:"⬟"},
+          {text:"لَيْسَ لَهُ أَضْلَاع", emoji:"⭕"}], a:0,
+       id:"n06_05", hint:"🔺 عدّ الأضلاع.", explain:"3 أضلاع."},
+
+      {p:64, t:"المُرَبَّعُ لَهُ ......",
+       type:"mc",
+       scene:{kind:"row", items:["🟦"], caption:"🟦 المربع"},
+       o:[{text:"3 أَضْلَاع", emoji:"🔺"},
+          {text:"4 أَضْلَاع مُتَسَاوِيَة", emoji:"🟦"},
+          {text:"5 أَضْلَاع", emoji:"⬟"}], a:1,
+       id:"n06_06", hint:"🟦 المربع له 4 أضلاع متساوية.", explain:"4 أضلاع متساوية."},
+
+      {p:59, t:"كَمْ مُكَعَّبًا فِي هَذَا الطَّابِق؟",
+       type:"mc",
+       scene:{kind:"grid", items:["🧊","🧊","🧊","🧊","🧊","🧊"], cols:3},
+       o:[{text:"4"},{text:"5"},{text:"6"},{text:"8"}], a:2,
+       id:"n06_08", hint:"🧊 عُدَّ المكعبات.", explain:"6 مكعبات."},
+
+      {p:46, t:"عُدَّ المَزْهَرِيَّاتِ عَلَى اسْتِقَامَةٍ وَاحِدَة",
+       type:"mc",
+       scene:{kind:"row", items:["🏺","🏺","🏺"],
+              caption:"🏺 3 مزهريات على استقامة واحدة"},
+       o:[{text:"2"},{text:"3"},{text:"4"},{text:"5"}], a:1,
+       id:"n06_09", hint:"🏺 على نفس السطر.", explain:"3."}
+    ]},
+
+    // ============= المحور 7: الضعف والنصف =============
+    {title:"الضعف والنصف", icon:"✖️", field:"double", qs:[
+      {p:36, t:"ضِعْفُ العَدَدِ 5 هُوَ ......",
+       type:"mc",
+       scene:{kind:"two-groups",
+         left:{items:["🔵","🔵","🔵","🔵","🔵"], label:"5"},
+         right:{items:["🔵","🔵","🔵","🔵","🔵"], label:"+5"}},
+       o:[{text:"5"},{text:"8"},{text:"10"},{text:"15"}], a:2,
+       id:"n07_01", hint:"✖️ 5 + 5.", explain:"10."},
+
+      {p:36, t:"ضِعْفُ العَدَدِ 7 هُوَ ......",
+       type:"mc",
+       o:[{text:"7"},{text:"12"},{text:"14"},{text:"21"}], a:2,
+       id:"n07_02", hint:"✖️ 7 + 7.", explain:"14."},
+
+      {p:36, t:"ضِعْفُ العَدَدِ 6 هُوَ ......",
+       type:"mc", scene:{kind:"two-groups",
+         left:{items:["🍬","🍬","🍬","🍬","🍬","🍬"], label:"6"},
+         right:{items:["🍬","🍬","🍬","🍬","🍬","🍬"], label:"+6"}},
+       o:[{text:"6"},{text:"10"},{text:"12"},{text:"14"}], a:2,
+       id:"n07_03", hint:"✖️ 6 + 6.", explain:"12."},
+
+      {p:37, t:"3 هُوَ نِصْفُ العَدَدِ ......",
+       type:"mc",
+       o:[{text:"3"},{text:"5"},{text:"6"},{text:"9"}], a:2,
+       id:"n07_05", hint:"➗ نصف 6 = 3.", explain:"6."},
+
+      {p:37, t:"6 هُوَ نِصْفُ العَدَدِ ......",
+       type:"mc",
+       o:[{text:"6"},{text:"10"},{text:"12"},{text:"14"}], a:2,
+       id:"n07_06", hint:"➗ نصف 12 = 6.", explain:"12."}
+    ]},
+
+    // ============= المحور 8: تنظيم المعطيات والوقت =============
+    {title:"تنظيم المعطيات والوقت", icon:"🕐", field:"data", qs:[
+      {p:19, t:"كَمْ حَبَّةَ إِجَاصٍ فِي الصُّورَة؟",
+       type:"mc",
+       scene:{kind:"row", items:["🍐","🍐","🍐"]},
+       o:[{text:"2"},{text:"3"},{text:"4"},{text:"5"}], a:1,
+       id:"n08_01", hint:"🍐 عُدَّ الإجاص.", explain:"3."},
+
+      {p:19, t:"كَمْ حَبَّةَ تُفَّاحٍ فِي الصُّورَة؟",
+       type:"mc",
+       scene:{kind:"row", items:["🍎","🍎","🍎","🍎","🍎"]},
+       o:[{text:"3"},{text:"4"},{text:"5"},{text:"6"}], a:2,
+       id:"n08_02", hint:"🍎 عُدَّ التفاح.", explain:"5."},
+
+      {p:19, t:"كَمْ حَبَّةَ مَوْزٍ فِي الصُّورَة؟",
+       type:"mc",
+       scene:{kind:"row", items:["🍌","🍌"]},
+       o:[{text:"1"},{text:"2"},{text:"3"},{text:"4"}], a:1,
+       id:"n08_03", hint:"🍌 عُدَّ الموز.", explain:"2."},
+
+      {p:52, t:"مَتَى نَذْهَبُ إِلَى المَدْرَسَة صَبَاحًا؟",
+       type:"mc",
+       scene:{kind:"row", items:["🌅"], caption:"🌅 في الصباح"},
+       o:[{text:"7:30", emoji:"🕢"},{text:"12:00", emoji:"🕛"},
+          {text:"16:30", emoji:"🕟"},{text:"20:00", emoji:"🕗"}], a:0,
+       id:"n08_04", hint:"🕢 صباحًا.", explain:"7:30."},
+
+      {p:52, t:"مَتَى نَعُودُ مِنَ المَدْرَسَة؟",
+       type:"mc",
+       o:[{text:"7:30", emoji:"🕢"},{text:"12:00", emoji:"🕛"},
+          {text:"16:30", emoji:"🕟"},{text:"20:00", emoji:"🕗"}], a:2,
+       id:"n08_05", hint:"🕟 بعد الزوال.", explain:"16:30."},
+
+      {p:52, t:"مَتَى نَتَعَشَّى؟",
+       type:"mc",
+       o:[{text:"8:00"},{text:"12:00"},{text:"16:00"},{text:"20:00"}], a:3,
+       id:"n08_06", hint:"🕗 مساءً.", explain:"20:00."},
+
+      {p:73, t:"مَا هُوَ اليَوْمُ الَّذِي يَأْتِي بَعْدَ الأَحَد؟",
+       type:"mc",
+       scene:{kind:"row", items:["📅"], caption:"📅 أيام الأسبوع"},
+       o:[{text:"الاثْنَيْن", emoji:"1️⃣"},
+          {text:"الثُّلَاثَاء", emoji:"2️⃣"},
+          {text:"السَّبْت", emoji:"7️⃣"},
+          {text:"الجُمُعَة", emoji:"5️⃣"}], a:0,
+       id:"n08_07", hint:"📅 بعد الأحد.", explain:"الاثنين."},
+
+      {p:73, t:"مَا هُوَ اليَوْمُ الَّذِي يَأْتِي قَبْلَ الجُمُعَة؟",
+       type:"mc",
+       o:[{text:"الخَمِيس", emoji:"4️⃣"},
+          {text:"السَّبْت", emoji:"6️⃣"},
+          {text:"الأَرْبِعَاء", emoji:"3️⃣"},
+          {text:"الاثْنَيْن", emoji:"1️⃣"}], a:0,
+       id:"n08_08", hint:"📅 قبل الجمعة.", explain:"الخميس."},
+
+      {p:48, t:"يَوْمُ السَّبْت: المُصَارَعَة. يَوْمُ الثُّلَاثَاء: ......",
+       type:"mc",
+       scene:{kind:"row", items:["🤼","🏀","🏐","⚽","🏃"],
+              caption:"🤼 السبت | 🏀 الاثنين | 🏐 الثلاثاء | ⚽ الأربعاء | 🏃 الخميس"},
+       o:[{text:"كُرَة اليَد", emoji:"🤾"},
+          {text:"الجُمْبَاز", emoji:"🤸"},
+          {text:"الكُرَة الطَّائِرَة", emoji:"🏐"},
+          {text:"كُرَة السَّلَّة", emoji:"🏀"}], a:0,
+       id:"n08_09", hint:"🤼 السبت مصارعة، الثلاثاء كرة اليد.", explain:"كُرَة اليَد."}
+    ]},
+
+    // ============= المحور 9: تسليات ومراجعة =============
+    {title:"تسليات ومراجعة", icon:"🎯", field:"fun", qs:[
+      {p:77, t:"كَمْ عَدَدُ الأَصَابِعِ المَرْفُوعَة؟",
+       type:"mc",
+       scene:{kind:"row", items:["✋"]},
+       o:[{text:"1", emoji:"1️⃣"},{text:"3", emoji:"3️⃣"},
+          {text:"5", emoji:"5️⃣"},{text:"7", emoji:"7️⃣"}], a:2,
+       id:"n09_01", hint:"✋ 5 أصابع.", explain:"5."},
+
+      {p:77, t:"كَمْ عَدَدُ الأَصَابِعِ المَرْفُوعَة؟",
+       type:"mc",
+       scene:{kind:"row", items:["✌️"]},
+       o:[{text:"1", emoji:"1️⃣"},{text:"2", emoji:"2️⃣"},
+          {text:"3", emoji:"3️⃣"},{text:"4", emoji:"4️⃣"}], a:1,
+       id:"n09_02", hint:"✌️ إصبعان.", explain:"2."},
+
+      {p:78, t:"تَتَبَّعْ رَقَمَ الوَاحِد «1»",
+       type:"trace", letter:"1", id:"n09_03"},
+      {p:78, t:"تَتَبَّعْ رَقَمَ الثَّلَاثَةِ «3»",
+       type:"trace", letter:"3", id:"n09_04"},
+      {p:79, t:"تَتَبَّعْ رَقَمَ السِّتَّةِ «6»",
+       type:"trace", letter:"6", id:"n09_05"},
+      {p:79, t:"تَتَبَّعْ رَقَمَ الصِّفْرِ «0»",
+       type:"trace", letter:"0", id:"n09_06"},
+
+      {p:83, t:"أَحْسِبْ: 3 + 2 = ؟",
+       type:"mc",
+       scene:{kind:"two-groups",
+         left:{items:["⭐","⭐","⭐"], label:"3"},
+         right:{items:["⭐","⭐"], label:"+2"}},
+       o:[{text:"4"},{text:"5"},{text:"6"},{text:"7"}], a:1,
+       id:"n09_07", hint:"➕ عُدَّ النجوم.", explain:"5."},
+
+      {p:83, t:"أَحْسِبْ: 4 + 6 = ؟",
+       type:"mc",
+       scene:{kind:"two-groups",
+         left:{items:["🔵","🔵","🔵","🔵"], label:"4"},
+         right:{items:["🔵","🔵","🔵","🔵","🔵","🔵"], label:"+6"}},
+       o:[{text:"8"},{text:"9"},{text:"10"},{text:"11"}], a:2,
+       id:"n09_08", hint:"➕ 4 + 6 = 10.", explain:"10."},
+
+      {p:84, t:"أَحْسِبْ: 4 + 5 = ؟",
+       type:"mc",
+       o:[{text:"7"},{text:"8"},{text:"9"},{text:"10"}], a:2,
+       id:"n09_09", hint:"➕ 4 + 5.", explain:"9."},
+
+      {p:84, t:"أَحْسِبْ: 10 - 1 = ؟",
+       type:"mc",
+       scene:{kind:"row", items:["🔴","🔴","🔴","🔴","🔴","🔴","🔴","🔴","🔴","🔴"]},
+       o:[{text:"8"},{text:"9"},{text:"10"},{text:"11"}], a:1,
+       id:"n09_10", hint:"➖ 10 - 1.", explain:"9."},
+
+      {p:84, t:"أَكْمِلْ: 21 ، 31 ، 41 ، 51 ، ...",
+       type:"mc",
+       scene:{kind:"numberLine", from:21, to:61, step:10, missing:[61]},
+       o:[{text:"55"},{text:"60"},{text:"61"},{text:"71"}], a:2,
+       id:"n09_11", hint:"🔢 +10 كل مرة.", explain:"61."},
+
+      {p:84, t:"أَكْمِلْ: 12 ، 22 ، ... ، ... ، ...",
+       type:"mc",
+       o:[{text:"32-42-52"},{text:"30-40-50"},{text:"23-24-25"},{text:"31-41-51"}], a:0,
+       id:"n09_12", hint:"🔢 +10 كل مرة.", explain:"32، 42، 52."}
+    ]}
+  ]
+};
+
+const FIELDCOL = {
+  numbers:['#3DD9B0','#D4F8EC'], space:['#5EC8FF','#D6EEFF'],
+  addsub:['#FFA45B','#FFE0B2'], bignumbers:['#9B59FF','#E8D5FF'],
+  measure:['#43A047','#C8E6C9'], shapes:['#E53935','#FFCDD2'],
+  double:['#8E24AA','#E1BEE7'], data:['#00897B','#B2DFDB'],
+  fun:['#FB8C00','#FFE0B2']
+};
+
+const DIGITS = ['0','1','2','3','4','5','6','7','8','9'];
+
+/* ============================================================
+   Utilities
+   ============================================================ */
+function hashStr(s){ let x=7; for(let i=0;i<s.length;i++) x=(x*31+s.charCodeAt(i))>>>0; return x; }
+function seededShuffle(n,seed){ const idx=Array.from({length:n},(_,i)=>i); if(n<2) return idx; let s=(seed&0x7fffffff)+1; const nx=()=>(s=(s*1103515245+12345)&0x7fffffff); for(let i=n-1;i>0;i--){ const j=nx()%(i+1); [idx[i],idx[j]]=[idx[j],idx[i]]; } return idx; }
+function solutionText(q){
+  switch(q.type){
+    case 'mc': {
+      const opt = q.o[q.a];
+      return typeof opt==='object' ? opt.text : opt;
+    }
+    case 'trace': return `رقم ${q.letter}`;
+    case 'match': return q.pairs.map(p=>`${p[0]} = ${p[1]}`).join(' ، ');
+    case 'order': return q.items.join(' ← ');
+    case 'tap': return q.items.filter(i=>i.k===1).map(i=>i.h).join(' ، ');
+    case 'fillWord': return q.display.replace('__', q.answer);
+    case 'train': return q.rows.map(r=>r.display.replace('__', r.answer)).join(' ، ');
+    case 'cloud': return 'استظهر';
+    case 'pie': return q.letters.join(' ← ');
+    case 'sort': return 'التصنيف';
+  }
+  return '';
+}
+
+/* ============================================================
+   State
+   ============================================================ */
+const KEY = 'daftari.math.v2';
+const BACKUP_KEY = 'daftari.math.v2.backup';
+const todayStr = (d=new Date()) => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const DEFAULTS = () => ({name:'', stars:0, done:{}, mistakes:{}, best:{}, streak:0, lastDay:'', daily:{day:'',stars:0}, version:2});
+let S = DEFAULTS();
+let saveStatusTimer;
+function setSaveStatus(state,msg){
+  const el = document.getElementById('saveStatus'); if(!el) return;
+  el.classList.remove('hidden','ok','err','fade');
+  el.textContent = msg || (state==='ok'?'✅ تم الحفظ':'⚠️ فشل الحفظ');
+  el.classList.add(state==='ok'?'ok':'err');
+  clearTimeout(saveStatusTimer);
+  saveStatusTimer = setTimeout(()=>el.classList.add('fade'), 2000);
+}
+function loadState(){
+  try{ const raw=localStorage.getItem(KEY); if(raw){ S=mergeState(JSON.parse(raw)); return {ok:true}; } }
+  catch(e){ try{ const b=localStorage.getItem(BACKUP_KEY); if(b){ S=mergeState(JSON.parse(b)); return {ok:true}; } }catch(e2){} return {ok:false}; }
+  return {ok:true};
+}
+function mergeState(o){
+  const d = DEFAULTS(); if(!o||typeof o!=='object') return d;
+  d.name = typeof o.name==='string' ? o.name.slice(0,20) : '';
+  d.stars = Number.isFinite(+o.stars) ? Math.max(0,Math.floor(+o.stars)) : 0;
+  d.streak = Number.isFinite(+o.streak) ? Math.max(0,Math.floor(+o.streak)) : 0;
+  d.lastDay = typeof o.lastDay==='string' ? o.lastDay : '';
+  for(const k of ['done','mistakes']) if(o[k]&&typeof o[k]==='object') for(const id in o[k]) if(o[k][id]) d[k][id]=1;
+  if(o.best&&typeof o.best==='object') for(const k in o.best) d.best[k]=+o.best[k]||0;
+  if(o.daily&&typeof o.daily==='object') d.daily = {day:String(o.daily.day||''),stars:+o.daily.stars||0};
+  return d;
+}
+function saveState(){
+  try{ const prev=localStorage.getItem(KEY); if(prev) localStorage.setItem(BACKUP_KEY, prev); localStorage.setItem(KEY, JSON.stringify(S)); setSaveStatus('ok'); return true; }
+  catch(e){ setSaveStatus('err'); return false; }
+}
+function recordAttempt(id, outcome){
+  const day = todayStr();
+  if(S.daily.day!==day) S.daily={day,stars:0};
+  if(outcome==='first-try'||outcome==='eventual'){ S.done[id]=1; delete S.mistakes[id]; }
+  else if(outcome==='revealed'||outcome==='skipped'){ S.mistakes[id]=1; }
+  if(S.lastDay!==day){ const y=new Date(); y.setDate(y.getDate()-1); S.streak = S.lastDay===todayStr(y) ? S.streak+1 : 1; S.lastDay=day; }
+  saveState();
+}
+function addStars(n){ S.stars+=n; S.daily.stars+=n; saveState(); }
+
+/* ============================================================
+   Voice
+   ============================================================ */
+const Voice = {
+  voice:null, checked:false,
+  pick(){ try{ const vs=speechSynthesis.getVoices(); this.voice=vs.find(v=>/^ar/i.test(v.lang))||null; this.checked=true; }catch(e){ this.checked=true; } },
+  speak(text){
+    if(!('speechSynthesis' in window)) return;
+    const clean = String(text).replace(/[\u{1F300}-\u{1FAFF}\u{1F900}-\u{1F9FF}\u{2600}-\u{27BF}]/gu,'').replace(/\s+/g,' ').trim();
+    if(!clean) return;
+    try{ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(clean); if(!this.checked) this.pick(); u.lang=this.voice?this.voice.lang:'ar-SA'; if(this.voice) u.voice=this.voice; u.rate=0.8; u.pitch=1.05; speechSynthesis.speak(u); }catch(e){}
+  },
+  stop(){ try{ speechSynthesis.cancel(); }catch(e){} }
+};
+try{ if('speechSynthesis' in window){ speechSynthesis.addEventListener('voiceschanged', ()=>Voice.pick()); Voice.pick(); } }catch(e){}
+
+/* ============================================================
+   SFX
+   ============================================================ */
+const SFX = {
+  ctx:null,
+  init(){ if(!this.ctx){ try{ this.ctx = new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} } },
+  play(type){
+    if(!this.ctx) this.init();
+    if(!this.ctx) return;
+    try{
+      const now = this.ctx.currentTime;
+      if(type === 'correct'){
+        [523.25, 659.25, 783.99].forEach((f,i)=>{
+          const o = this.ctx.createOscillator(); const g = this.ctx.createGain();
+          o.connect(g); g.connect(this.ctx.destination);
+          o.type = 'sine'; o.frequency.value = f;
+          g.gain.setValueAtTime(0, now + i*0.1);
+          g.gain.linearRampToValueAtTime(0.12, now + i*0.1 + 0.02);
+          g.gain.exponentialRampToValueAtTime(0.001, now + i*0.1 + 0.3);
+          o.start(now + i*0.1); o.stop(now + i*0.1 + 0.35);
+        });
+      } else if(type === 'wrong'){
+        const o = this.ctx.createOscillator(); const g = this.ctx.createGain();
+        o.connect(g); g.connect(this.ctx.destination);
+        o.type = 'triangle'; o.frequency.value = 220;
+        g.gain.setValueAtTime(0.08, now);
+        g.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+        o.frequency.linearRampToValueAtTime(150, now + 0.25);
+        o.start(now); o.stop(now + 0.3);
+      } else if(type === 'click'){
+        const o = this.ctx.createOscillator(); const g = this.ctx.createGain();
+        o.connect(g); g.connect(this.ctx.destination);
+        o.type = 'sine'; o.frequency.value = 880;
+        g.gain.setValueAtTime(0.05, now);
+        g.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+        o.start(now); o.stop(now + 0.1);
+      }
+    }catch(e){}
+  }
+};
+
+/* Toast + Confetti */
+let toastTimeout;
+function showToast(msg){
+  const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(toastTimeout); toastTimeout=setTimeout(()=>t.classList.remove('show'), 2400);
+}
+function confetti(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const cv=document.getElementById('confetti'), cx=cv.getContext('2d');
+  cv.width=innerWidth; cv.height=innerHeight; cv.classList.remove('hidden');
+  const cols=['#3DD9B0','#5EC8FF','#9B59FF','#FFD93D','#FF6FB5','#FFA45B'];
+  const ps=Array.from({length:110},()=>({x:Math.random()*cv.width,y:-20-Math.random()*cv.height*0.5,r:4+Math.random()*6,c:cols[Math.floor(Math.random()*cols.length)],vy:2+Math.random()*3.5,vx:-1.5+Math.random()*3,a:Math.random()*6}));
+  let f=0;
+  (function loop(){
+    cx.clearRect(0,0,cv.width,cv.height);
+    ps.forEach(p=>{p.y+=p.vy;p.x+=p.vx+Math.sin((f+p.a*10)/15);p.a+=0.1;cx.fillStyle=p.c;cx.fillRect(p.x,p.y,p.r,p.r*1.6);});
+    if(++f<170) requestAnimationFrame(loop); else cv.classList.add('hidden');
+  })();
+}
+
+/* ============================================================
+   Session
+   ============================================================ */
+const MAX_TRIES = 3, MAX_SKIPS = 3;
+class Session {
+  constructor({key, title, list, field='general'}){
+    Object.assign(this,{key,title,list,field,i:0,tries:0,firstTryCorrect:0,eventualCorrect:0,revealedCount:0,skippedCount:0,sstars:0,skips:0,locked:false,revealed:false,finished:false,last:null,fb:null,fbIsExplain:false,run:0});
+  }
+  get cur(){ return this.list[this.i]; }
+  get isLast(){ return this.i >= this.list.length - 1; }
+  get pct(){ const r = this.firstTryCorrect + this.eventualCorrect; return Math.floor(r*100/this.list.length); }
+  get rating(){ const p=this.pct; return p>=90?3:p>=60?2:p>=30?1:0; }
+  submit(ok){
+    if(this.locked||this.finished) return;
+    if(ok){
+      const earned = this.tries===0?3:this.tries===1?2:1;
+      if(this.tries===0) this.firstTryCorrect++; else this.eventualCorrect++;
+      this.sstars+=earned; this.locked=true; this.last=true;
+      this.fb = ['أحسنت! 🎉','ممتاز! 🌟','رائع! 👏','برافو! 🥳'][this.i%4];
+      this.fbIsExplain = false;
+      SFX.play('correct');
+      recordAttempt(this.cur.id, this.tries===0?'first-try':'eventual');
+      addStars(earned);
+    } else {
+      this.tries++; this.last=false;
+      SFX.play('wrong');
+      if(this.tries >= MAX_TRIES){
+        this.locked=true; this.revealed=true; this.revealedCount++;
+        this.fb = '💡 ' + (this.cur.explain || ('الحل: ' + solutionText(this.cur)));
+        this.fbIsExplain = true;
+        recordAttempt(this.cur.id,'revealed');
+      } else this.fb = 'حاول مرة أخرى 🌈 (' + (MAX_TRIES-this.tries) + ' متبقية)';
+    }
+  }
+  goTo(i){ Object.assign(this,{i,tries:0,locked:false,revealed:false,last:null,fb:null,fbIsExplain:false}); this.run++; }
+  next(){ if(this.finished||!this.locked) return; this.isLast ? this.finish() : this.goTo(this.i+1); }
+  skip(){ if(this.finished||this.locked||this.skips>=MAX_SKIPS) return; this.skips++; this.skippedCount++; recordAttempt(this.cur.id,'skipped'); this.isLast ? this.finish() : this.goTo(this.i+1); }
+  finish(){ this.finished=true; const best = S.best[this.key]; if(best===undefined || this.pct > best) S.best[this.key]=this.pct; saveState(); }
+}
+
+/* ============================================================
+   Scene Renderer — يعرض المشهد/الصورة المرافقة للسؤال
+   ============================================================ */
+function renderScene(scene){
+  const box = document.createElement('div');
+  box.className = 'scene-box';
+  if(!scene){ box.classList.add('hidden'); return box; }
+
+  // نوع: صفّ أفقي
+  if(scene.kind === 'row'){
+    box.classList.add('row');
+    scene.items.forEach(it=>{
+      const s = document.createElement('span');
+      s.className = 'scene-emoji' + (scene.big?' big':'');
+      s.textContent = it;
+      box.appendChild(s);
+    });
+    if(scene.caption){
+      const cap = document.createElement('div');
+      cap.className = 'scene-caption';
+      cap.textContent = scene.caption;
+      box.appendChild(cap);
+    }
+  }
+  // نوع: شبكة
+  else if(scene.kind === 'grid'){
+    box.classList.add('grid');
+    box.style.gridTemplateColumns = `repeat(${scene.cols||5}, 1fr)`;
+    scene.items.forEach(it=>{
+      const s = document.createElement('span');
+      s.className = 'scene-emoji' + (scene.big?' big':'');
+      s.textContent = it;
+      box.appendChild(s);
+    });
+    if(scene.caption){
+      const cap = document.createElement('div');
+      cap.className = 'scene-caption';
+      cap.style.gridColumn = '1 / -1';
+      cap.textContent = scene.caption;
+      box.appendChild(cap);
+    }
+  }
+  // نوع: عمود
+  else if(scene.kind === 'stack'){
+    box.classList.add('stack');
+    scene.items.forEach(it=>{
+      const s = document.createElement('span');
+      s.className = 'scene-emoji' + (scene.big?' big':'');
+      s.textContent = it;
+      box.appendChild(s);
+    });
+    if(scene.caption){
+      const cap = document.createElement('div');
+      cap.className = 'scene-caption';
+      cap.textContent = scene.caption;
+      box.appendChild(cap);
+    }
+  }
+  // نوع: مجموعتان متقابلتان (للجمع والطرح)
+  else if(scene.kind === 'two-groups'){
+    box.classList.add('row');
+    box.style.gap = '14px';
+    const wrap = document.createElement('div');
+    wrap.className = 'scene-two-groups';
+    const mk = (grp) => {
+      const g = document.createElement('div');
+      g.className = 'scene-group';
+      const items = document.createElement('div');
+      items.className = 'scene-items';
+      grp.items.forEach(it=>{
+        const s = document.createElement('span');
+        s.className = 'scene-emoji small';
+        s.textContent = it;
+        items.appendChild(s);
+      });
+      const lbl = document.createElement('div');
+      lbl.className = 'scene-label';
+      lbl.textContent = grp.label;
+      g.append(items, lbl);
+      return g;
+    };
+    if(scene.left) wrap.appendChild(mk(scene.left));
+    // للسهم/العلامة
+    if(scene.left && scene.right){
+      const mid = document.createElement('div');
+      mid.className = 'scene-arrow';
+      mid.textContent = '⟵';
+      wrap.appendChild(mid);
+    }
+    if(scene.right) wrap.appendChild(mk(scene.right));
+    box.appendChild(wrap);
+    if(scene.caption){
+      const cap = document.createElement('div');
+      cap.className = 'scene-caption';
+      cap.textContent = scene.caption;
+      box.appendChild(cap);
+    }
+  }
+  // نوع: شريط عددي مع فراغات
+  else if(scene.kind === 'numberLine'){
+    box.appendChild(renderNumberLine(scene));
+    if(scene.caption){
+      const cap = document.createElement('div');
+      cap.className = 'scene-caption';
+      cap.textContent = scene.caption;
+      box.appendChild(cap);
+    }
+  }
+  // نوع: عشرات ووحدات
+  else if(scene.kind === 'tensUnits'){
+    box.appendChild(renderTensUnits(scene));
+    if(scene.caption){
+      const cap = document.createElement('div');
+      cap.className = 'scene-caption';
+      cap.textContent = scene.caption;
+      box.appendChild(cap);
+    }
+  }
+  return box;
+}
+
+function renderNumberLine(scene){
+  const wrap = document.createElement('div');
+  wrap.className = 'number-line';
+  const step = scene.step || 1;
+  for(let n = scene.from; n <= scene.to; n += step){
+    const c = document.createElement('div');
+    c.className = 'num-cell';
+    if(scene.missing && scene.missing.includes(n)){
+      c.classList.add('empty');
+      c.textContent = '...';
+    } else {
+      c.textContent = n;
+    }
+    wrap.appendChild(c);
+  }
+  return wrap;
+}
+
+function renderTensUnits(scene){
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'display:flex; gap:16px; justify-content:center; align-items:flex-end; flex-wrap:wrap;';
+  // عشرات كأشرطة
+  const tensWrap = document.createElement('div');
+  tensWrap.style.cssText = 'display:flex; gap:6px;';
+  for(let i = 0; i < (scene.tens||0); i++){
+    const bar = document.createElement('div');
+    bar.style.cssText = 'width:20px; height:100px; background:linear-gradient(180deg,#3DD9B0,#26A69A); border-radius:6px; box-shadow:0 3px 6px rgba(61,217,176,0.3); border:2px solid white;';
+    tensWrap.appendChild(bar);
+  }
+  // وحدات كمربعات
+  const unitsWrap = document.createElement('div');
+  unitsWrap.style.cssText = 'display:grid; grid-template-columns:repeat(5,1fr); gap:5px;';
+  for(let i = 0; i < (scene.units||0); i++){
+    const sq = document.createElement('div');
+    sq.style.cssText = 'width:18px; height:18px; background:linear-gradient(135deg,#FFA45B,#FF8A3D); border-radius:4px; box-shadow:0 2px 4px rgba(255,164,91,0.35); border:2px solid white;';
+    unitsWrap.appendChild(sq);
+  }
+  wrap.append(tensWrap, unitsWrap);
+  const cap = document.createElement('div');
+  cap.style.cssText = 'width:100%; text-align:center; font-weight:900; color:var(--purple); font-family:Amiri,serif; font-size:1.05rem; margin-top:8px;';
+  cap.textContent = `${scene.tens||0} عشرات و ${scene.units||0} وحدات`;
+  const wrapper = document.createElement('div');
+  wrapper.style.width = '100%';
+  wrapper.append(wrap, cap);
+  return wrapper;
+}
+
+/* ============================================================
+   Widgets
+   ============================================================ */
+const W = {};
+const LETTERS_A = ['أ','ب','ج','د','هـ','و','ز','ح','ط','ي'];
+
+function mkCheck(fn){
+  const b=document.createElement('button');
+  b.className='btn btn-primary';
+  b.style.cssText='width:100%;margin-top:14px;';
+  b.textContent='تحقق ✅';
+  b.onclick=fn;
+  return b;
+}
+function addHint(box, q){
+  if(!q.hint) return;
+  const btn=document.createElement('button');
+  btn.className='hintbtn';
+  btn.style.cssText='width:100%;justify-content:center;margin:8px 0;';
+  btn.innerHTML='💡 تلميح';
+  const hb=document.createElement('div');
+  hb.className='fb explain hidden';
+  hb.innerHTML=q.hint;
+  let shown=false;
+  btn.onclick=()=>{shown=!shown;hb.classList.toggle('hidden',!shown);btn.innerHTML=shown?'🙈 إخفاء':'💡 تلميح';if(shown) Voice.speak(q.hint);};
+  box.appendChild(btn); box.appendChild(hb);
+}
+
+/* ✨ Widget MC — يعرض المشهد + الخيارات مع رموز */
+W.mc = (box, q, api) => {
+  // عرض المشهد أولاً (صورة/رسم)
+  if(q.scene){
+    const sceneEl = renderScene(q.scene);
+    box.appendChild(sceneEl);
+  }
+  addHint(box, q);
+  const list=document.createElement('div');
+  list.className='choices';
+  const btns=[];
+  q.o.forEach((opt,i)=>{
+    const isObj = typeof opt === 'object' && opt !== null;
+    const text = isObj ? (opt.text||'') : String(opt);
+    const emoji = isObj ? (opt.emoji||'') : '';
+    const b=document.createElement('button');
+    b.className='choice'+(q.big?' big':'');
+    const badge=document.createElement('span');
+    badge.className='choice-badge';
+    badge.textContent=LETTERS_A[i]||String(i+1);
+    b.appendChild(badge);
+    if(emoji){
+      const em = document.createElement('span');
+      em.className='choice-emoji';
+      em.textContent = emoji;
+      b.appendChild(em);
+    }
+    const t=document.createElement('span');
+    t.className='choice-text';
+    t.textContent = text;
+    b.appendChild(t);
+    b.onclick=()=>{
+      if(i===q.a){ b.classList.add('ok'); btns.forEach(x=>x.disabled=true); api.submit(true); }
+      else { b.classList.add('bad'); b.disabled=true; api.submit(false); }
+    };
+    btns.push(b); list.appendChild(b);
+  });
+  box.appendChild(list);
+  return { reveal(){ btns.forEach((b,i)=>{ b.disabled=true; b.classList.remove('bad'); if(i===q.a) b.classList.add('ok'); }); } };
+};
+
+/* Trace — كتابة الأرقام */
+W.trace = (box, q, api) => {
+  const wrap=document.createElement('div'); wrap.className='trace-wrap';
+  const disp=document.createElement('div'); disp.className='letter-display'; disp.textContent=q.letter;
+  const cv=document.createElement('canvas'); cv.className='trace-canvas';
+  const controls=document.createElement('div'); controls.className='trace-controls';
+  const clearBtn=document.createElement('button'); clearBtn.className='btn btn-ghost btn-sm'; clearBtn.textContent='🧹 مسح';
+  const speakBtn=document.createElement('button'); speakBtn.className='btn btn-ghost btn-sm'; speakBtn.textContent='🔊 اسمع';
+  speakBtn.onclick=()=>Voice.speak(q.letter);
+  const doneBtn=document.createElement('button'); doneBtn.className='btn btn-mint btn-sm'; doneBtn.textContent='انتهيت ✅';
+  controls.append(clearBtn,speakBtn,doneBtn);
+  wrap.append(disp,cv,controls); box.appendChild(wrap);
+
+  const ctx=cv.getContext('2d');
+  let drawn=false, lastDraw=[];
+  let retries = 0;
+  let ro = null;
+
+  function resize(){
+    const rect=cv.getBoundingClientRect();
+    const dpr=Math.min(window.devicePixelRatio||1, 2);
+    if(rect.width <= 0) return false;
+    cv.width=Math.round(rect.width*dpr);
+    cv.height=Math.round(rect.width*dpr*0.64);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    drawGuide();
+    if(lastDraw.length){
+      ctx.strokeStyle='#3DD9B0'; ctx.lineWidth=12; ctx.lineCap='round'; ctx.lineJoin='round';
+      lastDraw.forEach(s=>{
+        if(s.length<2) return;
+        ctx.beginPath();
+        s.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));
+        ctx.stroke();
+      });
+    }
+    return true;
+  }
+  function drawGuide(){
+    const dpr=Math.min(window.devicePixelRatio||1, 2);
+    ctx.save(); ctx.setTransform(dpr,0,0,dpr,0,0);
+    const vw=cv.width/dpr, vh=cv.height/dpr;
+    ctx.clearRect(0,0,vw,vh);
+    ctx.strokeStyle='rgba(61,217,176,0.15)'; ctx.lineWidth=1.5; ctx.setLineDash([8,8]);
+    [vh*0.25,vh*0.5,vh*0.75].forEach(y=>{ctx.beginPath();ctx.moveTo(20,y);ctx.lineTo(vw-20,y);ctx.stroke();});
+    ctx.setLineDash([]);
+    ctx.fillStyle='rgba(61,217,176,0.13)';
+    ctx.font=`bold ${vh*0.72}px Amiri, serif`;
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText(q.letter, vw/2, vh/2);
+    ctx.restore();
+  }
+  function tryResize(){ if(resize()) return; if(retries < 40){ retries++; setTimeout(tryResize, 40); } }
+  setTimeout(tryResize, 10);
+
+  let drawing=false, currentStroke=[];
+  const getPos = (clientX, clientY) => { const r = cv.getBoundingClientRect(); return { x: clientX - r.left, y: clientY - r.top }; };
+  const startAt = (x,y) => {
+    drawing = true; drawn = true;
+    currentStroke = [getPos(x,y)];
+    lastDraw.push(currentStroke);
+    ctx.strokeStyle='#3DD9B0'; ctx.lineWidth=12; ctx.lineCap='round'; ctx.lineJoin='round';
+    ctx.beginPath(); ctx.moveTo(currentStroke[0].x, currentStroke[0].y);
+  };
+  const moveTo = (x,y) => {
+    if(!drawing) return;
+    const p = getPos(x,y);
+    currentStroke.push(p);
+    ctx.lineTo(p.x,p.y); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(p.x,p.y);
+  };
+  const end = () => { drawing = false; };
+  const onPointerDown = e => { e.preventDefault(); startAt(e.clientX, e.clientY); };
+  const onPointerMove = e => { e.preventDefault(); moveTo(e.clientX, e.clientY); };
+  const onPointerUp = e => { e.preventDefault(); end(); };
+
+  if(window.PointerEvent){
+    cv.addEventListener('pointerdown', onPointerDown);
+    cv.addEventListener('pointermove', onPointerMove);
+    cv.addEventListener('pointerup', onPointerUp);
+    cv.addEventListener('pointerleave', onPointerUp);
+    cv.addEventListener('pointercancel', onPointerUp);
+  } else {
+    cv.addEventListener('mousedown', e=>startAt(e.clientX, e.clientY));
+    cv.addEventListener('mousemove', e=>moveTo(e.clientX, e.clientY));
+    cv.addEventListener('mouseup', end);
+    cv.addEventListener('mouseleave', end);
+    cv.addEventListener('touchstart', e=>{ const t=e.touches[0]; startAt(t.clientX, t.clientY); }, {passive:false});
+    cv.addEventListener('touchmove', e=>{ e.preventDefault(); const t=e.touches[0]; moveTo(t.clientX, t.clientY); }, {passive:false});
+    cv.addEventListener('touchend', end);
+  }
+  clearBtn.onclick=()=>{lastDraw=[];drawn=false;drawGuide();};
+  doneBtn.onclick=()=>{if(!drawn)return showToast('ارسم الرقم أولًا ✏️');doneBtn.disabled=true;clearBtn.disabled=true;api.submit(true);};
+  if(window.ResizeObserver){ ro = new ResizeObserver(()=>{ if(cv.getBoundingClientRect().width > 0) resize(); }); ro.observe(cv); }
+  return {
+    reveal(){ clearBtn.disabled=true; speakBtn.disabled=true; doneBtn.disabled=true; },
+    destroy(){ if(ro) try{ ro.disconnect(); }catch(e){} }
+  };
+};
+
+/* Order */
+W.order = (box, q, api) => {
+  const n=q.items.length;
+  const pool=seededShuffle(n, hashStr(q.id));
+  let placed=[];
+  const pb=document.createElement('div'); pb.className='ordbox';
+  const qb=document.createElement('div'); qb.className='ordpool';
+  const chip=(idx,num,fn)=>{
+    const b=document.createElement('button');
+    b.className='chip'+(num?' placed':'');
+    if(num){ const badge=document.createElement('b'); badge.textContent=num; b.appendChild(badge); }
+    const txt=document.createElement('span'); txt.textContent=q.items[idx]; b.appendChild(txt);
+    b.onclick=fn; return b;
+  };
+  const chk=mkCheck(()=>{
+    const ok=placed.every((v,i)=>v===i);
+    if(!ok){ placed=[]; draw(); }
+    api.submit(ok);
+    if(ok){ pb.querySelectorAll('button').forEach(x=>x.disabled=true); qb.querySelectorAll('button').forEach(x=>x.disabled=true); }
+  });
+  function draw(){
+    pb.replaceChildren(...placed.map((idx,k)=>chip(idx,k+1,()=>{placed.splice(k,1);draw();})));
+    qb.replaceChildren(...pool.filter(i=>!placed.includes(i)).map(i=>chip(i,0,()=>{placed.push(i);draw();})));
+    chk.disabled = placed.length !== n;
+  }
+  const lab1=document.createElement('div'); lab1.className='ordlab'; lab1.textContent='ترتيبك:';
+  const lab2=document.createElement('div'); lab2.className='ordlab'; lab2.textContent='اضغط بالترتيب:';
+  box.append(lab1,pb,lab2,qb,chk);
+  draw();
+  return { reveal(){ placed=Array.from({length:n},(_,i)=>i); draw(); } };
+};
+
+/* ============================================================
+   Overlay
+   ============================================================ */
+let currentSession = null;
+let currentInst = null;
+
+function openUnit(sess){
+  currentSession = sess;
+  const ov = document.getElementById('unitOverlay');
+  ov.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+  const color = FIELDCOL[sess.field] || ['#3DD9B0','#D4F8EC'];
+  document.getElementById('unitTopbar').style.background = `linear-gradient(135deg, ${color[0]}, ${color[0]}cc)`;
+  document.getElementById('unitTitle').textContent = sess.title;
+  document.getElementById('unitBody').classList.remove('hidden');
+  document.getElementById('unitBottom').classList.remove('hidden');
+  document.querySelector('.unit-progress-wrap').classList.remove('hidden');
+  document.querySelector('.unit-meta').classList.remove('hidden');
+  document.getElementById('unitResultView').classList.add('hidden');
+  document.getElementById('unitResultView').innerHTML = '';
+  loadExercise();
+}
+
+function closeUnit(){
+  Voice.stop();
+  const ov = document.getElementById('unitOverlay');
+  ov.classList.add('hidden');
+  document.body.style.overflow = '';
+  currentSession = null;
+  if(currentInst && currentInst.destroy) try{ currentInst.destroy(); }catch(e){}
+  currentInst = null;
+  renderHome();
+}
+
+function loadExercise(){
+  const sess = currentSession; if(!sess) return;
+  if(sess.finished){ showUnitResult(); return; }
+  if(currentInst && currentInst.destroy) try{ currentInst.destroy(); }catch(e){}
+  currentInst = null;
+  const q = sess.cur;
+  const color = FIELDCOL[sess.field] || ['#3DD9B0','#D4F8EC'];
+  document.getElementById('unitStars').textContent = `⭐ ${sess.sstars}`;
+  document.getElementById('unitIdx').textContent = `${sess.i+1} / ${sess.list.length}`;
+  document.getElementById('unitPage').textContent = q.p ? `📖 ص ${q.p}` : '';
+  const pf = document.getElementById('unitProgress');
+  pf.style.background = color[0];
+  pf.style.width = (sess.i*100/sess.list.length) + '%';
+  document.getElementById('unitQuestion').textContent = q.t;
+  const vis = document.getElementById('unitVis');
+  vis.textContent = '';
+  const box = document.getElementById('unitBox');
+  box.innerHTML = '';
+  box.inert = false;
+  const fb = document.getElementById('unitFb');
+  fb.className = 'fb hidden'; fb.textContent = '';
+  const api = {submit: ok => {
+    sess.submit(ok);
+    if(sess.revealed && currentInst && currentInst.reveal) currentInst.reveal();
+    refreshOverlay();
+  }};
+  const widget = W[q.type];
+  if(widget){
+    try{ currentInst = widget(box, q, api); }
+    catch(err){
+      console.error('Widget error:', err);
+      const p=document.createElement('p');
+      p.style.cssText='padding:20px;text-align:center;color:var(--red);font-weight:700;';
+      p.textContent='⚠️ خطأ في تحميل النشاط.';
+      box.appendChild(p);
+    }
+  } else {
+    const p=document.createElement('p'); p.textContent='نوع غير مدعوم'; box.appendChild(p);
+  }
+  if(q.type !== 'trace') Voice.speak(q.t);
+  refreshOverlay();
+}
+
+function refreshOverlay(){
+  const sess = currentSession; if(!sess) return;
+  const box = document.getElementById('unitBox');
+  box.inert = !!sess.locked;
+  const fb = document.getElementById('unitFb');
+  if(sess.fb){ fb.className = 'fb ' + (sess.last?'good':(sess.fbIsExplain?'explain':'try')); fb.textContent = sess.fb; }
+  else { fb.className='fb hidden'; fb.textContent=''; }
+  document.getElementById('unitStars').textContent = `⭐ ${sess.sstars}`;
+  const bottom = document.getElementById('unitBottom'); bottom.innerHTML = '';
+  if(!sess.locked && sess.skips < MAX_SKIPS){
+    const skipBtn = document.createElement('button');
+    skipBtn.className='linkbtn'; skipBtn.textContent = `تخطّي (${MAX_SKIPS - sess.skips})`;
+    skipBtn.onclick = () => { sess.skip(); if(sess.finished) return showUnitResult(); loadExercise(); };
+    bottom.appendChild(skipBtn);
+  }
+  const grow = document.createElement('span'); grow.className='grow'; bottom.appendChild(grow);
+  if(sess.locked){
+    const nextBtn = document.createElement('button');
+    nextBtn.className='btn btn-primary';
+    nextBtn.textContent = sess.isLast ? 'النتيجة 🏆' : 'التالي ➡️';
+    nextBtn.onclick = () => { sess.next(); if(sess.finished) return showUnitResult(); loadExercise(); };
+    bottom.appendChild(nextBtn);
+  } else if(sess.tries > 0){
+    const fallback = document.createElement('button');
+    fallback.className='btn btn-ghost';
+    fallback.textContent='التالي ➡️';
+    fallback.style.opacity='0.85';
+    fallback.onclick=()=>{
+      sess.locked=true; sess.revealed=true; sess.revealedCount++;
+      sess.fb='💡 '+(sess.cur.explain||('الحل: '+solutionText(sess.cur)));
+      sess.fbIsExplain=true;
+      recordAttempt(sess.cur.id,'revealed');
+      if(currentInst && currentInst.reveal) currentInst.reveal();
+      refreshOverlay();
+    };
+    bottom.appendChild(fallback);
+  }
+}
+
+function showUnitResult(){
+  const sess = currentSession; if(!sess) return;
+  const good = sess.pct >= 60;
+  document.getElementById('unitBody').classList.add('hidden');
+  document.getElementById('unitBottom').classList.add('hidden');
+  document.querySelector('.unit-progress-wrap').classList.add('hidden');
+  document.querySelector('.unit-meta').classList.add('hidden');
+  const rv = document.getElementById('unitResultView');
+  rv.classList.remove('hidden');
+  rv.innerHTML = `
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:40px 20px;text-align:center;max-width:520px;margin:0 auto;">
+      <div style="font-size:5.5rem;">${good ? '🎉' : '💪'}</div>
+      <h2 style="font-size:2rem;color:var(--mint);margin:10px 0;">${good ? 'أحسنت!' : 'حاول مرة أخرى'}</h2>
+      <div style="display:flex;gap:8px;justify-content:center;font-size:3.2rem;margin:14px 0;color:var(--yellow);">${[0,1,2].map(i=>`<span>${i<sess.rating?'⭐':'☆'}</span>`).join('')}</div>
+      <div style="background:white;border:2.5px solid var(--mint-light);border-radius:22px;padding:20px;width:100%;box-shadow:var(--shadow-lg);">
+        <h3 style="color:var(--mint);margin-bottom:10px;">📊 النتيجة</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div style="background:var(--mint-light);padding:10px;border-radius:12px;text-align:center;">
+            <span style="font-size:1.5rem;font-weight:900;color:var(--mint);display:block;">${sess.firstTryCorrect}/${sess.list.length}</span>
+            <span style="font-size:0.78rem;color:var(--text-soft);font-weight:700;">صحيحة أول مرة</span>
+          </div>
+          <div style="background:var(--mint-light);padding:10px;border-radius:12px;text-align:center;">
+            <span style="font-size:1.5rem;font-weight:900;color:var(--mint);display:block;">${sess.eventualCorrect}</span>
+            <span style="font-size:0.78rem;color:var(--text-soft);font-weight:700;">بعد محاولات</span>
+          </div>
+          <div style="background:var(--mint-light);padding:10px;border-radius:12px;text-align:center;">
+            <span style="font-size:1.5rem;font-weight:900;color:var(--mint);display:block;">${sess.revealedCount}</span>
+            <span style="font-size:0.78rem;color:var(--text-soft);font-weight:700;">تم كشفها</span>
+          </div>
+          <div style="background:var(--mint-light);padding:10px;border-radius:12px;text-align:center;">
+            <span style="font-size:1.5rem;font-weight:900;color:var(--mint);display:block;">${sess.skippedCount}</span>
+            <span style="font-size:0.78rem;color:var(--text-soft);font-weight:700;">تم تخطيها</span>
+          </div>
+        </div>
+        <p style="text-align:center;font-weight:900;color:var(--pink);font-size:1.1rem;margin-top:12px;">⭐ كسبت ${sess.sstars} نجمة</p>
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px;">
+          <button class="btn btn-primary" onclick="closeUnit()">🏠 الفهرس</button>
+          <button class="btn btn-ghost" onclick="retryUnit()">🔄 مرة أخرى</button>
+        </div>
+      </div>
+    </div>
+  `;
+  if(good) setTimeout(confetti, 250);
+}
+
+function retryUnit(){
+  if(!currentSession) return;
+  const old = currentSession;
+  currentSession = new Session({key:old.key, title:old.title, list:old.list, field:old.field});
+  document.getElementById('unitBody').classList.remove('hidden');
+  document.getElementById('unitBottom').classList.remove('hidden');
+  document.querySelector('.unit-progress-wrap').classList.remove('hidden');
+  document.querySelector('.unit-meta').classList.remove('hidden');
+  document.getElementById('unitResultView').classList.add('hidden');
+  document.getElementById('unitResultView').innerHTML='';
+  loadExercise();
+}
+
+function renderHome(){
+  const grid = document.getElementById('chaptersGrid'); if(!grid) return;
+  grid.innerHTML='';
+  let td=0, tq=0;
+  DATA.units.forEach(u => { tq += u.qs.length; td += u.qs.filter(q => S.done[q.id]).length; });
+  const pct = tq ? Math.round(td*100/tq) : 0;
+  const op = document.getElementById('overallProgress');
+  if(op) op.innerHTML = `<div class="row"><span>📊 التقدم الكلي</span><span>${td} / ${tq} (${pct}٪)</span></div><div class="bar"><i style="width:${pct}%"></i></div>`;
+  DATA.units.forEach((u, i) => {
+    const dc = u.qs.filter(q => S.done[q.id]).length;
+    const p = Math.round(dc*100/u.qs.length);
+    const status = dc === u.qs.length ? '🏆' : (dc > 0 ? '⏳' : '');
+    const card = document.createElement('button');
+    card.className = 'chapter-card';
+    card.innerHTML = `${status?`<span class="status-badge">${status}</span>`:''}<div class="emoji">${u.icon}</div><div class="num">${i+1}</div><div class="title">${u.title}</div><div class="bar"><i style="width:${p}%"></i></div><div class="sub">${dc} / ${u.qs.length}</div>`;
+    card.onclick = () => openUnit(new Session({key:'unit'+i, title:u.title, list:u.qs, field:u.field}));
+    grid.appendChild(card);
+  });
+}
+
+function renderNumbers(){
+  const grid = document.getElementById('numbersGrid');
+  if(!grid) return;
+  grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:10px;margin-top:12px;';
+  grid.innerHTML='';
+  DIGITS.forEach(d => {
+    const b = document.createElement('button');
+    b.style.cssText = "padding:14px 6px;background:linear-gradient(135deg,#D4F8EC,#D6EEFF);border:2.5px solid transparent;border-radius:16px;cursor:pointer;text-align:center;transition:all 0.2s;font-family:inherit;color:inherit;";
+    b.onmouseover = () => { b.style.transform='translateY(-3px)'; b.style.borderColor='var(--mint)'; };
+    b.onmouseout = () => { b.style.transform='translateY(0)'; b.style.borderColor='transparent'; };
+    b.innerHTML = `<div style="font-family:'Amiri',serif;font-size:2.8rem;font-weight:900;color:var(--purple);line-height:1;">${d}</div>`;
+    b.onclick = () => {
+      Voice.speak(d);
+      setTimeout(() => openTraceNumber(d), 500);
+    };
+    grid.appendChild(b);
+  });
+}
+
+function openTraceNumber(num){
+  const sess = new Session({
+    key:'trace_'+num, title:'كتابة الرقم ' + num, field:'numbers',
+    list:[{id:'trace_'+num, type:'trace', letter:num, t:'تَتَبَّعْ رَقَمَ «'+num+'» بإصبعك', p:'—'}]
+  });
+  openUnit(sess);
+}
+
+const tabs = document.querySelectorAll('.tab');
+const sections = document.querySelectorAll('.section');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+    sections.forEach(s => s.classList.remove('active'));
+    tab.classList.add('active'); tab.setAttribute('aria-selected','true');
+    const target = tab.dataset.target;
+    document.getElementById(target).classList.add('active');
+    if(target === 'parent') renderParent();
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+});
+
+function renderParent(){
+  const pc = document.getElementById('parentContent'); if(!pc) return;
+  const tq = DATA.units.reduce((a,u)=>a+u.qs.length, 0);
+  const done = Object.keys(S.done).length;
+  const mis = Object.keys(S.mistakes).length;
+  const pct = tq ? Math.round(done*100/tq) : 0;
+  pc.innerHTML = `
+    <div style="padding:14px;background:var(--mint-light);border-radius:16px;margin-bottom:14px;">
+      <p style="margin:0 0 6px;font-weight:900;font-size:1.05rem;">${S.name||'الطفل'}: ${done} / ${tq} (${pct}٪)</p>
+      <p style="margin:0;color:var(--text-soft);font-size:0.9rem;">⭐ ${S.stars} نجمة • 🔥 ${S.streak} أيام • ❗ ${mis} للمراجعة</p>
+    </div>
+    <h3 style="color:var(--mint);margin:16px 0 8px;">📊 التقدم حسب المحاور</h3>
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;">
+        <thead><tr>
+          <th style="padding:8px;border-bottom:1px solid var(--mint-light);text-align:start;">المحور</th>
+          <th style="padding:8px;border-bottom:1px solid var(--mint-light);text-align:start;">المنجز</th>
+          <th style="padding:8px;border-bottom:1px solid var(--mint-light);text-align:start;">أفضل</th>
+        </tr></thead>
+        <tbody>${DATA.units.map((u,i)=>{
+          const d = u.qs.filter(q => S.done[q.id]).length;
+          const b = S.best['unit'+i];
+          return `<tr>
+            <td style="padding:8px;border-bottom:1px solid var(--mint-light);">${u.icon} ${u.title}</td>
+            <td style="padding:8px;border-bottom:1px solid var(--mint-light);">${d}/${u.qs.length}</td>
+            <td style="padding:8px;border-bottom:1px solid var(--mint-light);">${b != null ? b+'%' : '—'}</td>
+          </tr>`;
+        }).join('')}</tbody>
+      </table>
+    </div>
+    <h3 style="color:var(--mint);margin:18px 0 8px;">💾 حفظ / استعادة</h3>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <button class="btn btn-primary" id="exportBtn">📤 حفظ نسخة</button>
+      <button class="btn btn-ghost" id="importBtn">📥 استعادة</button>
+      <button class="btn btn-warn" id="resetBtn">♻️ إعادة</button>
+    </div>
+    <input type="file" id="importFile" accept=".json,application/json" style="display:none;">
+  `;
+  document.getElementById('exportBtn').onclick = () => {
+    try{ const blob=new Blob([JSON.stringify(S, null, 2)], {type:'application/json'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=`daftari-math-${todayStr()}.json`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); showToast('✅ تم التصدير'); }catch(e){ showToast('⚠️'); }
+  };
+  document.getElementById('importBtn').onclick = () => document.getElementById('importFile').click();
+  document.getElementById('importFile').onchange = e => {
+    const f=e.target.files[0]; if(!f) return;
+    const r=new FileReader();
+    r.onload=()=>{try{S=mergeState(JSON.parse(r.result)); saveState(); renderParent(); renderHome(); showToast('✅ تم الاستيراد');}catch(err){showToast('⚠️');}};
+    r.readAsText(f);
+  };
+  document.getElementById('resetBtn').onclick = () => {
+    if(confirm('هل تريد مسح التقدم؟')){ S=DEFAULTS(); saveState(); renderParent(); renderHome(); showToast('تم'); }
+  };
+}
+
+window.addEventListener('load', () => {
+  const r = loadState();
+  if(!r.ok) setTimeout(()=>setSaveStatus('err'), 800);
+  renderHome();
+  renderNumbers();
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape'){ const ov=document.getElementById('unitOverlay'); if(ov && !ov.classList.contains('hidden')) closeUnit(); }
+  });
+});
+</script>
+</body>
+</html>
